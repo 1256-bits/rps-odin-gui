@@ -24,6 +24,7 @@ const rps = (player, ai) => {
 			else
 				return pva + "You win!";
 			break;
+	}
 }
 
 const plInput = () => prompt("[R]ock, [P]aper, [S]cissors");
@@ -33,4 +34,9 @@ const aiInput = () => {
 	return rps[Math.trunc(Math.random()*3)];
 }
 
+while (true) {
+	console.log(rps(plInput(),aiInput()));
+	if (prompt("continue? [Y/N]") === "N")
+		break;
+}
 
