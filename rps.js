@@ -30,7 +30,6 @@ const aiInput = () => {
 }
 
 function rollIntro() {
-
 	const intro = document.querySelector("#intro");
 	const lines = ["A.D. 2101", "War was beginning", "To keep all your base belong to you",
 		"You must win the game of rock, paper, scissors", "For great justice!"];
@@ -40,10 +39,19 @@ function rollIntro() {
 		intro.appendChild(p);
 		for (let i in line) {
 			setTimeout(() => p.textContent += line[i], delay);
-			delay += (+i === line.length-1) ? 500 : 70;
+			delay += (+i === line.length - 1) ? 500 : 70;
 		}
 		// setTimeout(() => intro.removeChild(p), delay);
 	}
 }
 
-rollIntro();
+function getRandomStr(len) {
+	const chars = "qwertyuiopasdfghjklzxcvbnm?.^&$!#*<>',1234567890"
+	let rndString = "";
+	for (let i = 0; i <= len; i++) {
+		const char = chars[Math.round(Math.random() * chars.length)];
+		rndString += (Math.round(Math.random() * 10) === 10) ? char.toUpperCase() : char;
+	}
+	return rndString[0].toUpperCase() + rndString.slice(1);
+}
+// rolloIntro();
