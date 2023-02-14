@@ -40,7 +40,7 @@ function rollIntro() {
 		p.innerText = randomStr;
 		intro.appendChild(p);
 		for (let i in line) {
-			setTimeout(() => p.textContent = line.slice(0,i) + randomStr.slice(i), delay);
+			setTimeout(() => p.textContent = line.slice(0,i+1) + randomStr.slice(i+1), delay);
 			delay += (+i === line.length - 1) ? 500 : 70;
 		}
 		// setTimeout(() => intro.removeChild(p), delay);
