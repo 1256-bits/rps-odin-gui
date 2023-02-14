@@ -1,5 +1,3 @@
-//RPS no gui
-
 const rps = (player, ai) => {
 	const dict = {"R": "rock", "P": "paper", "S": "scissors"};
 	const pva = `${dict[player]} vs ${dict[ai]}.`;
@@ -11,19 +9,16 @@ const rps = (player, ai) => {
 				return pva + "You lose.";
 			else
 				return pva + "You win!";
-			break;
 		case "P":
 			if (ai === "S")
 				return pva + "You lose.";
 			else
 				return pva + "You win!";
-			break;
 		case "S":
 			if (ai === "R")
 				return pva + "You lose.";
 			else
 				return pva + "You win!";
-			break;
 	}
 }
 
@@ -34,9 +29,6 @@ const aiInput = () => {
 	return rps[Math.trunc(Math.random()*3)];
 }
 
-while (true) {
-	console.log(rps(plInput(),aiInput()));
-	if (prompt("continue? [Y/N]") === "N")
-		break;
+function rollIntro() {
+	const body = document.querySelector("body");
 }
-
