@@ -30,5 +30,14 @@ const aiInput = () => {
 }
 
 function rollIntro() {
-	const body = document.querySelector("body");
+	const intro = document.querySelector("#intro");
+	const lines = ["A.D. 2101", "War was beginning", "To keep all your base belong to you",
+					"You must win the game of rock, paper, scissors", "For great justice!"];
+	for (let line of lines) {
+		const p = document.createElement("p");
+		intro.appendChild(p);
+		p.innerText = line;
+	}
 }
+
+rollIntro();
