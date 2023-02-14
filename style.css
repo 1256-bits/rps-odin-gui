@@ -4,9 +4,13 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
-p {
+#intro > p {
     text-align: center;
+}
+
+body {
+    margin: 0;
 }
