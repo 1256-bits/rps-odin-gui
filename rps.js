@@ -30,19 +30,19 @@ const aiInput = () => {
 }
 
 function rollIntro() {
-	
+
 	const intro = document.querySelector("#intro");
 	const lines = ["A.D. 2101", "War was beginning", "To keep all your base belong to you",
 		"You must win the game of rock, paper, scissors", "For great justice!"];
-	let delay = 50;
+	let delay = 70;
 	for (let line of lines) {
 		const p = document.createElement("p");
 		intro.appendChild(p);
-		for (let char of line) {
-			console.log(char);
-			setTimeout(() => p.textContent += char, delay);
-			delay += 50;
+		for (let i in line) {
+			setTimeout(() => p.textContent += line[i], delay);
+			delay += (+i === line.length-1) ? 500 : 70;
 		}
+		// setTimeout(() => intro.removeChild(p), delay);
 	}
 }
 
