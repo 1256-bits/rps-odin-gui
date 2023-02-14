@@ -50,7 +50,7 @@ function rollIntro() {
 function getRandomStr(len) {
 	const chars = "qwertyuiopasdfghjklzxcvbnm?.^&$!#*<>',1234567890"
 	let rndString = "";
-	for (let i = 0; i <= len; i++) {
+	for (let i = 0; i < len; i++) {
 		const char = chars[Math.round(Math.random() * chars.length)];
 		rndString += (Math.round(Math.random() * 10) === 10) ? char.toUpperCase() : char;
 	}
