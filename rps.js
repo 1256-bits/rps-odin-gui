@@ -35,10 +35,12 @@ function rollIntro() {
 		"You must win the game of rock, paper, scissors", "For great justice!"];
 	let delay = 70;
 	for (let line of lines) {
+		const randomStr = getRandomStr(line.length);
 		const p = document.createElement("p");
+		p.innerText = randomStr;
 		intro.appendChild(p);
 		for (let i in line) {
-			setTimeout(() => p.textContent += line[i], delay);
+			setTimeout(() => p.textContent = line.slice(0,i) + randomStr.slice(i), delay);
 			delay += (+i === line.length - 1) ? 500 : 70;
 		}
 		// setTimeout(() => intro.removeChild(p), delay);
@@ -54,4 +56,4 @@ function getRandomStr(len) {
 	}
 	return rndString[0].toUpperCase() + rndString.slice(1);
 }
-// rolloIntro();
+rollIntro();
