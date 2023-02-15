@@ -1,4 +1,5 @@
 const delay = 50;
+let i = 0;
 
 function rollIntro() {
     const intro = document.querySelector("#intro");
@@ -13,7 +14,8 @@ function rollIntro() {
         p.style.display = "none";
         intro.appendChild(p);
         if (lineNum != 0)
-            pause += line.length * delay;
+            pause += lines[lineNum - 1].length * delay;
+        console.log(lineNum, line.length, pause, line.length * delay)
         setTimeout(typewriter, pause, p, line);
     }
 }
@@ -30,7 +32,13 @@ function getRandomStr(len) {
 
 function typewriter(p, line) {
     p.style.display = "block";
-    p.innerText = line;
+    p.textContent = line.slice(0, i + 1) + p.textContent.slice(i + 1);
+    if (i == line.length) {
+        i = 0;
+        return;
+    }
+    i++;
+    setTimeout(typewriter, delay, p, line);
 }
 
 rollIntro();
