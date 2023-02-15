@@ -12,7 +12,7 @@ function rollIntro(lineNum) {
     p.textContent = getRandomStr(line.length);
     p.style.display = "none";
     intro.appendChild(p);
-    setTimeout(typewriter, delay, p, line, lineNum);
+    setTimeout(typewriter, 1000, p, line, lineNum);
 }
 
 function getRandomStr(len) {
