@@ -1,23 +1,18 @@
 const delay = 50;
 let i = 0;
 
-function rollIntro() {
+function rollIntro(lineNum) {
     const intro = document.querySelector("#intro");
     const lines = ["A.D. 2101", "War was beginning", "To keep all your base belong to you",
         "You must win the game of rock, paper, scissors", "For great justice!"];
-    let pause = 0;
-    for (let lineNum in lines) {
-        const line = lines[lineNum];
-        const randomStr = getRandomStr(line.length);
-        const p = document.createElement("p");
-        p.textContent = getRandomStr(line.length);
-        p.style.display = "none";
-        intro.appendChild(p);
-        if (lineNum != 0)
-            pause += lines[lineNum - 1].length * delay;
-        console.log(lineNum, line.length, pause, line.length * delay)
-        setTimeout(typewriter, pause, p, line);
-    }
+    const line = lines[lineNum];
+    if (!line)
+        return;
+    const p = document.createElement("p");
+    p.textContent = getRandomStr(line.length);
+    p.style.display = "none";
+    intro.appendChild(p);
+    setTimeout(typewriter, delay, p, line, lineNum);
 }
 
 function getRandomStr(len) {
@@ -30,16 +25,18 @@ function getRandomStr(len) {
     return rndString[0].toUpperCase() + rndString.slice(1);
 }
 
-function typewriter(p, line) {
+function typewriter(p, line, lineNum) {
     console.log(line, i)
+    // alert(lineNum)
     p.style.display = "block";
     p.textContent = line.slice(0, i + 1) + p.textContent.slice(i + 1);
     if (i >= line.length) {
         i = 0;
+        rollIntro(lineNum + 1)
         return;
     }
     i++;
-    setTimeout(typewriter, delay, p, line);
+    setTimeout(typewriter, delay, p, line, lineNum);
 }
 
-rollIntro();
+rollIntro(0);
