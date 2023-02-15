@@ -4,13 +4,17 @@ function rollIntro() {
     const intro = document.querySelector("#intro");
     const lines = ["A.D. 2101", "War was beginning", "To keep all your base belong to you",
         "You must win the game of rock, paper, scissors", "For great justice!"];
-    for (let line of lines) {
+    let pause = 0;
+    for (let lineNum in lines) {
+        const line = lines[lineNum];
         const randomStr = getRandomStr(line.length);
         const p = document.createElement("p");
         p.textContent = getRandomStr(line.length);
         p.style.display = "none";
         intro.appendChild(p);
-        setTimeout(typewriter(p, line), 500);
+        if (lineNum != 0)
+            pause += line.length * delay;
+        setTimeout(typewriter, pause, p, line);
     }
 }
 
