@@ -18,8 +18,9 @@
     margin: 0;
     word-break: break-all;
     padding: 0.5rem;
-    transition: all 1s ease-out;
 }
+
+
 
 .close-button {
     position: absolute;
