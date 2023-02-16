@@ -1,20 +1,23 @@
 const delay = 50;
 let i = 0;
+const intro = document.querySelector("#intro");
 
 function rollIntro(lineNum) {
-    const intro = document.querySelector("#intro");
+    let isLastLine = false;
     const lines = ["A.D. 2101", "War was beginning", "To keep all your base belong to you",
         "You must win the game of rock, paper, scissors", "For great justice!"];
     const line = lines[lineNum];
     if (!line) {
-        setTimeout(drawCloseButton, 1000, intro);
+        setTimeout(drawCloseButton, 1000);
         return;
     }
     const p = document.createElement("p");
     p.textContent = getRandomStr(line.length);
     p.style.display = "none";
     intro.appendChild(p);
-    setTimeout(typewriter, 1000, p, line, lineNum);
+    if (lineNum == lines.length-1)
+        isLastLine = true;
+    setTimeout(typewriter, 1000, p, line, lineNum, isLastLine);
 }
 
 function getRandomStr(len) {
@@ -27,11 +30,17 @@ function getRandomStr(len) {
     return rndString[0].toUpperCase() + rndString.slice(1);
 }
 
-function typewriter(p, line, lineNum) {
+function typewriter(p, line, lineNum, isLastLine) {
     p.style.display = "block";
     p.textContent = line.slice(0, i + 1) + p.textContent.slice(i + 1);
+    if (i == 0 && lineNum > 0) {
+        const children = (isLastLine) ? intro.querySelectorAll("p") : intro.querySelectorAll(":not(:last-child)");
+        const width = +getComputedStyle(intro)["width"].slice(0,-2) - 20 + "px";
+        children.forEach(child => child.style.width = width); 
+    }
     if (i >= line.length) {
         i = 0;
+        p.style.width = getComputedStyle(p)["width"];
         rollIntro(lineNum + 1)
         return;
     }
@@ -39,8 +48,7 @@ function typewriter(p, line, lineNum) {
     setTimeout(typewriter, delay, p, line, lineNum);
 }
 
-function drawCloseButton(intro) {
-    // const a;
+function drawCloseButton() {
 }
 
 rollIntro(0);
