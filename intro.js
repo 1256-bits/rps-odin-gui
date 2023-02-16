@@ -6,8 +6,10 @@ function rollIntro(lineNum) {
     const lines = ["A.D. 2101", "War was beginning", "To keep all your base belong to you",
         "You must win the game of rock, paper, scissors", "For great justice!"];
     const line = lines[lineNum];
-    if (!line)
+    if (!line) {
+        setTimeout(drawCloseButton, 1000, intro);
         return;
+    }
     const p = document.createElement("p");
     p.textContent = getRandomStr(line.length);
     p.style.display = "none";
@@ -37,6 +39,10 @@ function typewriter(p, line, lineNum) {
     }
     i++;
     setTimeout(typewriter, delay, p, line, lineNum);
+}
+
+function drawCloseButton(intro) {
+    // const a;
 }
 
 rollIntro(0);
