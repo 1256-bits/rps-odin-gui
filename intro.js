@@ -28,8 +28,6 @@ function getRandomStr(len) {
 }
 
 function typewriter(p, line, lineNum) {
-    console.log(line, i)
-    // alert(lineNum)
     p.style.display = "block";
     p.textContent = line.slice(0, i + 1) + p.textContent.slice(i + 1);
     if (i >= line.length) {
