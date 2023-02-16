@@ -1,24 +1,32 @@
 #intro {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin: auto;
     font-size: 2rem;
     padding: 1rem;
     gap: 10px;
+    margin-top: 20%;
 }
 
-#intro > p {
+#intro>p {
     font-family: 'Courier New', Courier, monospace;
     background-color: rgb(83, 83, 82);
     border: solid 2px black;
     text-shadow: -1px 1px rgb(31, 31, 31);
     font-weight: bold;
+    text-align: center;
     max-width: 50vw;
+    /* width: --width */
     margin: 0;
     word-break: break-all;
-    padding: 0.5rem;
+    padding: 0.5rem var(--to-box-width);
     transition: all 1s ease-out;
+}
+
+#intro>p:hover {
+    width: 100% !important;
+    color: red;
 }
 
 .close-button {
@@ -27,15 +35,21 @@
 
 body {
     margin: 0;
+    background-color: rgb(122, 24, 24);
 }
 
 .vh-100 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 75vh;
+    flex-direction: column;
 }
 
 .background {
     background-color: rgb(122, 24, 24);
+}
+
+:root {
+    --to-box-width: 0.5rem;
 }
