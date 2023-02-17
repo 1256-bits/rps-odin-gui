@@ -72,6 +72,4 @@ function drawCloseButton() {
     });
 }
 
-// drawCloseButton();
-
 rollIntro(0);
