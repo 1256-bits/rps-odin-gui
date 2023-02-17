@@ -17,7 +17,7 @@
     max-width: 50vw;
     word-break: break-all;
     padding: 0.5rem;
-    transition: all .3s linear;
+    transition: all 1s cubic-bezier(0.28, 0.26, 0.49, 1.22);
 }
 
 
@@ -27,6 +27,18 @@
     align-items: center;
     height: 100vh;
     flex-direction: column;
+}
+
+#close-intro {
+    transition: all 1s linear;
+}
+
+.op-0 {
+    opacity: 0%;
+}
+
+.op-100 {
+    opacity: 100%;
 }
 
 .background {
