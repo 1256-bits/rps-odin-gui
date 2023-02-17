@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto;
+    /* margin: auto; */
     font-size: 2rem;
     padding: 1rem;
     gap: 10px;
-    margin-top: 20%;
+    /* margin-top: 20%; */
 }
 
 #intro>p {
@@ -37,14 +37,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 75vh;
+    height: 100vh;
     flex-direction: column;
 }
 
 .background {
     background-color: rgb(122, 24, 24);
-}
-
-:root {
-    --to-box-width: 0.5rem;
 }
