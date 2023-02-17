@@ -29,8 +29,8 @@
     flex-direction: column;
 }
 
-#close-intro {
-    transition: all 1s linear;
+.fade-animation {
+    transition: opacity 1s linear;
 }
 
 .op-0 {
