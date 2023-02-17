@@ -1,4 +1,4 @@
-const delay = 0;
+const delay = 30;
 let i = 0;
 const intro = document.querySelector("#intro");
 
