@@ -33,6 +33,28 @@
     transition: opacity 1s linear;
 }
 
+#close-intro {
+    font-family: sans-serif;
+    border-radius: 10px;
+    background-color: rgb(116, 116, 116);
+    border: solid 3px black;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+}
+
+#close-intro:hover {
+    background-color: rgb(150, 150, 150);
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+#close-intro:active {
+    background-color: darkgreen;
+    border-color: rgb(150, 150, 150);
+    color: rgb(150, 150, 150);
+}
+
 .op-0 {
     opacity: 0%;
 }
