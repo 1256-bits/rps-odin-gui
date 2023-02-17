@@ -45,7 +45,7 @@ function typewriter(p, line, lineNum, isLastLine) {
 
     if (i == 0 && lineNum > 0) {
         const children = (isLastLine) ? intro.querySelectorAll("p") : intro.querySelectorAll(":not(:last-child)");
-        const width = +getComputedStyle(intro)["width"].slice(0, -2) - 20 + "px";
+        const width = +getComputedStyle(intro)["width"].slice(0, -2) - 20 + "px"; // 20: 8px padding, 2px border, 10px gap.
         children.forEach(child => child.style.width = width);
     }
 
