@@ -65,6 +65,13 @@ function typewriter(p, line, lineNum, isLastLine) {
 function drawCloseButton() {
     const close = document.querySelector("#close-intro");
     close.classList.replace("op-0", "op-100");
+    close.addEventListener("click", () => {
+        const container = document.querySelector(":has( > #intro)");
+        container.classList.replace("op-100","op-0");
+        container.addEventListener("transitionend", (e) => e.target.remove());
+    });
 }
+
+// drawCloseButton();
 
 rollIntro(0);
