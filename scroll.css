@@ -1,7 +1,6 @@
 .ul {
     list-style-type: none;
     margin: 0;
-    /* padding: 1rem; */
     padding-inline: 1rem;
     border: 2px solid black;
     height: 2.5em;
@@ -19,5 +18,5 @@
 }
 
 :root {
-    --y: 2px;
+    --y: 10px;
 }
