@@ -43,7 +43,8 @@ function typewriter(p, line, lineNum, isLastLine) {
     if (i == 0 && isLastLine) //set last child's width as it has to expand right after it appears.
         p.style.width = getComputedStyle(p)["width"];
 
-    if (i == 0 && lineNum > 0) { //NOTE: does it behave properly if the floowing lines are smaller than previous?
+    if (i == 0 && lineNum > 0) { //NOTE: does it behave properly if the floowing lines are smaller than previous? | No, it doesn't
+        /* TODO: Make it work for lines of any length sometime in the future*/
         const children = (isLastLine) ? intro.querySelectorAll("p") : intro.querySelectorAll(":not(:last-child)");
         const width = +getComputedStyle(intro)["width"].slice(0, -2) - 20 + "px"; // 20: 8px padding, 2px border, 10px gap.
         children.forEach(child => child.style.width = width); //And if I use calc() the animation breaks. Wonderful!
