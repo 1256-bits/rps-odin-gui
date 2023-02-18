@@ -18,6 +18,10 @@
     <div class="vh-100 hide" id="main-screen">
         <p>There shall be text.</p>
     </div>
+    <script>
+        document.querySelector(":has(>#intro)").remove();
+        document.querySelector("#main-screen").classList.replace("hide", "center-flex");
+    </script>
 </body>
 
 </html>
