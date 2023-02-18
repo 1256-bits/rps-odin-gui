@@ -49,7 +49,8 @@ function typewriter(p, line, lineNum, isLastLine) {
         const width = +getComputedStyle(intro)["width"].slice(0, -2) - 20 + "px"; // 20: 8px padding, 2px border, 10px gap.
         children.forEach(child => child.style.width = width); //And if I use calc() the animation breaks. Wonderful!
         if(isLastLine)
-            children.forEach(child => child.style.width = "calc(100% - 20px)"); //allows them to resize after the intro is finished
+            children.forEach(child => child.style.width = "calc(100% - 19px)"); //allows them to resize after the intro is finished.
+            //19 - magic number.
     }
 
     if (i >= line.length) {
