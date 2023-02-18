@@ -25,7 +25,7 @@
     height: 100vh;
 }
 
-:has(>#intro) {
+.center-flex {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -77,12 +77,12 @@ function drawCloseButton() {
     });
 }
 
-rollIntro(0);
+// rollIntro(0);
 
 function mainScreenTurnOn(e) {
     e.target.style.cssText = `
         position: absolute;
         width: 100%;
     `
-    document.querySelector("#main-screen").classList.remove("hide");
+    document.querySelector("#main-screen").classList.replace("hide","center-flex");
 }
