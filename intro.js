@@ -68,8 +68,17 @@ function drawCloseButton() {
     close.addEventListener("click", () => {
         const container = document.querySelector(":has( > #intro)");
         container.classList.replace("op-100","op-0");
+        container.addEventListener("transitionstart", mainScreenTurnOn);
         container.addEventListener("transitionend", (e) => e.target.remove());
     });
 }
 
 rollIntro(0);
+
+function mainScreenTurnOn(e) {
+    e.target.style.cssText = `
+        position: absolute;
+        width: 100%;
+    `
+    document.querySelector("#main-screen").classList.remove("hide");
+}
