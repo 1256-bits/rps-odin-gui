@@ -1,20 +1,8 @@
-const ul = document.querySelector("ul");
-let currentChild = 0;
-const children = ul.children;
 window.addEventListener("keydown", (e) => {
-    const updateChild = () => children[currentChild].classList.toggle("hide");
-    updateChild();
+    const root = document.querySelector(":root");
+    const y = +getComputedStyle(root).getPropertyValue("--y").replace("px", "");
     if (e.key === "ArrowUp")
-        currentChild--;
+        root.style.setProperty("--y", y - 2 + "px");
     else if (e.key === "ArrowDown")
-        currentChild++;
-
-    if (currentChild > children.length - 1)
-        currentChild = 0;
-    else if (currentChild < 0)
-        currentChild = children.length - 1;
-    updateChild();
+        root.style.setProperty("--y", y + 2 + "px");
 });
-
-
-

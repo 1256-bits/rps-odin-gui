@@ -1,6 +1,23 @@
-ul {
+.ul {
     list-style-type: none;
     margin: 0;
-    padding: 1rem;
+    /* padding: 1rem; */
+    padding-inline: 1rem;
     border: 2px solid black;
+    height: 2.5em;
+    transition: all 1s linear;
+    overflow: hidden;
+}
+
+.wrapper>div {
+    width: 100%;
+    text-align: center;
+}
+
+.wrapper {
+    transform: translate(0px, var(--y));
+}
+
+:root {
+    --y: 2px;
 }
