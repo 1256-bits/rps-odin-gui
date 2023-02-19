@@ -10,9 +10,7 @@
     width: 100%;
     text-align: center;
     transition: all .3s linear;
-    height: min-content;
     height: 1.5em;
-    transform: translate(0px, var(--y));
 }
 
 :root {
