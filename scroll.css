@@ -1,9 +1,8 @@
 .ul {
-    list-style-type: none;
     margin: 0;
     padding-inline: 1rem;
     border: 2px solid black;
-    height: 2.5em;
+    height: 2.8em;
     overflow: hidden;
 }
 
@@ -11,6 +10,8 @@
     width: 100%;
     text-align: center;
     transition: all .3s linear;
+    height: min-content;
+    height: 1.5em;
 }
 
 .wrapper {
@@ -18,5 +19,5 @@
 }
 
 :root {
-    --y: 10px;
+    --y: -2.4em;
 }
