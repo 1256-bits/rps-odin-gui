@@ -14,7 +14,7 @@ window.addEventListener("keydown", (e) => {
         wrapper.append(current.cloneNode(true));
         // current.classList.add("op-0");
         // after.classList.remove("op-0");
-        wrapper.querySelector(":first-child").remove();
+        // wrapper.querySelector(":first-child").remove();
         after.classList.add("current");
     }
     else if (e.key === "ArrowDown") {
@@ -22,6 +22,6 @@ window.addEventListener("keydown", (e) => {
         current.classList.remove("current");
         before.classList.add("current");
         const newNode = current.cloneNode(true);
-        // wrapper.prepend();
+        wrapper.prepend(current.cloneNode(true));
     }
 });
