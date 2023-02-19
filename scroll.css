@@ -12,9 +12,6 @@
     transition: all .3s linear;
     height: min-content;
     height: 1.5em;
-}
-
-.wrapper {
     transform: translate(0px, var(--y));
 }
 
