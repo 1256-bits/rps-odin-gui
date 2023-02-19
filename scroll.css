@@ -2,7 +2,7 @@
     margin: 0;
     padding-inline: 1rem;
     border: 2px solid black;
-    height: 2.8em;
+    height: 2em;
     overflow: hidden;
 }
 
@@ -11,8 +11,25 @@
     text-align: center;
     transition: all .3s linear;
     height: 1.5em;
+    margin-top: -0.5em;
+    transform: translateY(var(--y));
+}
+
+.disable {
+    display: none;
+}
+
+.wrapper {
+    transform: translateY(var(--wrapper-y));
+    /* border: 2px red solid; */
+}
+
+.previous,
+.next {
+    /* scale: 0.7; */
 }
 
 :root {
-    --y: -2.4em;
+    --y: 0em;
+    --wrapper-y: -1.2em;
 }
