@@ -1,4 +1,8 @@
+let rateLimit = false;
+
 window.addEventListener("keydown", (e) => {
+    if (rateLimit)
+        return;
     const root = document.querySelector(":root");
     const current = document.querySelector(".current");
     const wrapper = document.querySelector(".wrapper");
@@ -26,7 +30,9 @@ window.addEventListener("keydown", (e) => {
         const newHidden = next.cloneNode(true)
         newHidden.classList.replace("current","disable");
         wrapper.append(newHidden);
-
+        
+        rateLimit = true;
+        setTimeout(() => rateLimit = false, 150);
         // hidden[1].classList.replace("disable", "next");
         // previous.classList.replace("previous", "disable");
     }
