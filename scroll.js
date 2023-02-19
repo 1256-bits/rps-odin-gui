@@ -1,7 +1,7 @@
 window.addEventListener("keydown", (e) => {
     const root = document.querySelector(":root");
     const current = document.querySelector(".current");
-    const wrapper = document.querySelector(".ul");
+    const wrapper = document.querySelector(".wrapper");
     const elements = Array.from(wrapper.children);
     const after = elements[elements.indexOf(current) + 1];
     const before = elements[elements.indexOf(current) - 1];

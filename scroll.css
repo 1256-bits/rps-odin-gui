@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 
-.ul>div {
+.wrapper>div {
     width: 100%;
     text-align: center;
     transition: all .3s linear;
