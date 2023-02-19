@@ -9,9 +9,12 @@
 .wrapper>div {
     width: 100%;
     text-align: center;
-    transition: all .3s linear;
     height: 1.5em;
     margin-top: -0.5em;
+}
+
+#container {
+    transition: all .3s linear;
     transform: translateY(var(--y));
 }
 

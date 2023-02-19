@@ -2,6 +2,7 @@ window.addEventListener("keydown", (e) => {
     const root = document.querySelector(":root");
     const current = document.querySelector(".current");
     const wrapper = document.querySelector(".wrapper");
+    const container = document.querySelector("#container");
     const previous = document.querySelector(".previous");
     const next = document.querySelector(".next");
     const hidden = document.querySelectorAll(".disable");
@@ -9,7 +10,6 @@ window.addEventListener("keydown", (e) => {
     const end = document.querySelector(".end");
     const y = +getComputedStyle(root).getPropertyValue("--y").replace("em", "");
     const wrapperY = +getComputedStyle(root).getPropertyValue("--wrapper-y").replace("em", "");
-    console.log(wrapperY)
 
     if (e.key === "ArrowUp") {
     }
