@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="vh-100 background center-flex op-100 fade-animation">
+    <div class="vh-100 background center-flex op-100 fade-animation" id="firefox-is-new-ie">
         <div id="intro">
         </div>
         <button type="button" id="close-intro" class="op-0 fade-animation">Close</button>
@@ -33,7 +33,7 @@
         </div class="ul">
     </div>
     <script>
-        document.querySelector(":has(>#intro)").remove();
+        document.querySelector("#firefox-is-new-ie").remove();
         document.querySelector("#main-screen").classList.replace("hide", "center-flex");
     </script>
 </body>
