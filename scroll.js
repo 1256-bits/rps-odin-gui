@@ -29,9 +29,6 @@ function scroll(e) {
         const newHidden = previous.cloneNode(true)
         newHidden.classList.replace("current", "disable");
         wrapper.prepend(newHidden);
-
-        rateLimit = true;
-        setTimeout(() => rateLimit = false, 150);
     }
 
     else if (e.key === "ArrowDown") {
@@ -47,8 +44,8 @@ function scroll(e) {
         const newHidden = next.cloneNode(true)
         newHidden.classList.replace("current", "disable");
         wrapper.append(newHidden);
-
-        rateLimit = true;
-        setTimeout(() => rateLimit = false, 150);
     }
+
+    rateLimit = true;
+    setTimeout(() => rateLimit = false, 150);
 }
