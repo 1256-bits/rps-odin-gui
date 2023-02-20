@@ -1,7 +1,5 @@
 let rateLimit = false;
 
-window.addEventListener("keydown", scroll)
-
 function scroll(e) {
     if (rateLimit)
         return;
