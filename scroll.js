@@ -1,12 +1,13 @@
 let rateLimit = false;
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", scroll)
+
+function scroll(e) {
     if (rateLimit)
         return;
     const root = document.querySelector(":root");
     const current = document.querySelector(".current");
     const wrapper = document.querySelector(".wrapper");
-    const container = document.querySelector("#container");
     const previous = document.querySelector(".previous");
     const next = document.querySelector(".next");
     const hidden = document.querySelectorAll(".disable");
@@ -50,4 +51,4 @@ window.addEventListener("keydown", (e) => {
         rateLimit = true;
         setTimeout(() => rateLimit = false, 150);
     }
-});
+}
