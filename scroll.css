@@ -25,7 +25,6 @@
 
 .wrapper {
     transform: translateY(var(--wrapper-y));
-    /* border: 2px red solid; */
 }
 
 .previous,
