@@ -38,4 +38,12 @@
 
 svg {
     display: block;
-} 
+}
+
+svg:hover {
+    fill: grey;
+}
+
+svg:active {
+    fill: red;
+}
