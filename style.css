@@ -95,15 +95,14 @@
 
 #buttons {
     display: grid;
-    grid-template-columns: 12px;
+    grid-template-columns: 1fr;
     gap: 1px;
 }
 
 #buttons>button {
-    height: fit-content;
-    padding: 0em;
-    margin: 0;
-    border: 1px buttonborder solid;
+    all: unset;
+    border: solid black 1px;
+    width: 12px;
 }
 
 body {
