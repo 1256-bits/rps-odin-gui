@@ -83,6 +83,8 @@
 
 #windows {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
     justify-content: space-between;
     width: 100%;
 }
@@ -90,19 +92,20 @@
 .rps-window {
     border: 2px solid black;
     height: 2em;
-    padding-inline: 3em;
+    padding-inline: 5em;
+    border-radius: 1em;
 }
 
 #buttons {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1px;
+    gap: 0px;
+    position: relative;
+    left: -10%;
 }
 
 #buttons>button {
     all: unset;
-    border: solid black 1px;
-    width: 12px;
 }
 
 body {
