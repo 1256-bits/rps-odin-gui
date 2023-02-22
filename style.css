@@ -74,6 +74,38 @@
     display: none;
 }
 
+#game {
+    width: 50%;
+    max-height: 50%;
+    border: solid 5px red;
+    padding: 2rem;
+}
+
+#windows {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.rps-window {
+    border: 2px solid black;
+    height: 2em;
+    padding-inline: 3em;
+}
+
+#buttons {
+    display: grid;
+    grid-template-columns: 12px;
+    gap: 1px;
+}
+
+#buttons>button {
+    height: fit-content;
+    padding: 0em;
+    margin: 0;
+    border: 1px buttonborder solid;
+}
+
 body {
     margin: 0;
 }

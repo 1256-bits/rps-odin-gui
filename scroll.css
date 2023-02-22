@@ -1,12 +1,10 @@
 .ul {
     margin: 0;
-    padding-inline: 1rem;
-    border: 2px solid black;
-    height: 2em;
     overflow: hidden;
 }
 
-.wrapper>div {
+.wrapper>div,
+.temp {
     width: 100%;
     text-align: center;
     height: 1.5em;
