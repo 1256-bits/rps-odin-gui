@@ -17,20 +17,42 @@
         </div>
         <button type="button" id="close-intro" class="op-0 fade-animation">Close</button>
     </div>
-    <div class="vh-100 hide" id="main-screen">
-        <div class="ul">
-            <div id="container">
-                <div class="wrapper">
-                    <div class="disable">one</div>
-                    <div class="begin">two</div>
-                    <div class="previous">three</div>
-                    <div class="current">one</div>
-                    <div class="next">two</div>
-                    <div class="end">three</div>
-                    <div class="disable">one</div>
+    <div class="vh-100 hide center-flex" id="main-screen">
+        <div id="game">
+            <div id="windows">
+                <div style="display: flex; flex-direction: row-reverse;">
+                    <div id="buttons">
+                        <button type="button" id="up">
+                            <svg height="12" width="12">
+                                <text x="2" y="9">▴</text>
+                            </svg>
+                        </button>
+                        <button type="buton" id="down">
+                            <svg height="12" width="12">
+                                <text x="2" y="12">▾</text>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="ul rps-window">
+                        <div id="container">
+                            <div class="wrapper">
+                                <div class="disable">rock</div>
+                                <div class="begin">paper</div>
+                                <div class="previous">scissors</div>
+                                <div class="current">rock</div>
+                                <div class="next">paper</div>
+                                <div class="end">scissors</div>
+                                <div class="disable">rock</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rps-window">
+                    <div class="temp">rock</div>
                 </div>
             </div>
-        </div class="ul">
+        </div>
+    </div>
     </div>
     <script>
         document.querySelector("#firefox-is-new-ie").remove();
