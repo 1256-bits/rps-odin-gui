@@ -1,0 +1,48 @@
+.ul {
+    margin: 0;
+    overflow: hidden;
+}
+
+.wrapper>div {
+    width: 100%;
+    text-align: center;
+    height: 1.5em;
+    margin-top: -0.5em;
+    transition: all .3s linear;
+}
+
+#container {
+    transition: all .3s linear;
+    transform: translateY(var(--y));
+}
+
+.disable {
+    display: none;
+}
+
+.wrapper {
+    transform: translateY(var(--wrapper-y));
+}
+
+.previous,
+.next {
+    scale: 0.7;
+    opacity: 0.6;
+}
+
+:root {
+    --y: 0em;
+    --wrapper-y: -1.2em;
+}
+
+svg {
+    display: block;
+}
+
+svg:hover {
+    fill: grey;
+}
+
+svg:active {
+    fill: red;
+}

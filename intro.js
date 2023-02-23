@@ -1,5 +1,5 @@
 const delay = 30;
-let i = 0;
+let i = 0; //does it have to be global?
 const intro = document.querySelector("#intro");
 
 function rollIntro(lineNum) {
@@ -8,7 +8,7 @@ function rollIntro(lineNum) {
         "You must win the game of rock, paper, scissors", "For great justice!"];
     const line = lines[lineNum];
 
-    if (!line) {
+    if (!line) { //typewriter eventually return an invalid line number
         setTimeout(drawCloseButton, 1000);
         return;
     }
@@ -40,13 +40,17 @@ function typewriter(p, line, lineNum, isLastLine) {
     p.style.display = "block";
     p.textContent = line.slice(0, i + 1) + p.textContent.slice(i + 1);
 
-    if (i == 0 && isLastLine)
+    if (i == 0 && isLastLine) //set last child's width as it has to expand right after it appears.
         p.style.width = getComputedStyle(p)["width"];
 
-    if (i == 0 && lineNum > 0) {
+    if (i == 0 && lineNum > 0) { //NOTE: does it behave properly if the floowing lines are smaller than previous? | No, it doesn't
+        /* TODO: Make it work for lines of any length sometime in the future*/
         const children = (isLastLine) ? intro.querySelectorAll("p") : intro.querySelectorAll(":not(:last-child)");
         const width = +getComputedStyle(intro)["width"].slice(0, -2) - 20 + "px"; // 20: 8px padding, 2px border, 10px gap.
-        children.forEach(child => child.style.width = width);
+        children.forEach(child => child.style.width = width); //And if I use calc() the animation breaks. Wonderful!
+        if(isLastLine)
+            children.forEach(child => child.style.width = "calc(100% - 19px)"); //allows them to resize after the intro is finished.
+            //19 - magic number.
     }
 
     if (i >= line.length) {
@@ -68,8 +72,17 @@ function drawCloseButton() {
     close.addEventListener("click", () => {
         const container = document.querySelector(":has( > #intro)");
         container.classList.replace("op-100","op-0");
+        container.addEventListener("transitionstart", mainScreenTurnOn);
         container.addEventListener("transitionend", (e) => e.target.remove());
     });
 }
 
-rollIntro(0);
+// rollIntro(0);
+
+function mainScreenTurnOn(e) {
+    e.target.style.cssText = `
+        position: absolute;
+        width: 100%;
+    `
+    document.querySelector("#main-screen").classList.replace("hide","center-flex");
+}

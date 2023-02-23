@@ -6,15 +6,64 @@
     <meta charset="utf-8">
     <script src="rps.js" defer></script>
     <script src="intro.js" defer></script>
+    <script src="scroll.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="scroll.css">
 </head>
 
 <body>
-    <div class="vh-100 background op-100 fade-animation">
+    <div class="vh-100 background center-flex op-100 fade-animation" id="firefox-is-new-ie">
         <div id="intro">
         </div>
         <button type="button" id="close-intro" class="op-0 fade-animation">Close</button>
     </div>
+    <div class="vh-100 hide center-flex" id="main-screen">
+        <div id="game" class="center-flex">
+            <div id="windows">
+                <div style="display: flex; flex-direction: row-reverse; gap: 1px;">
+                    <div id="buttons">
+                        <button type="button" id="up">
+                            <svg viewBox="0 0 100 100">
+                                <polygon points="0,100 50,0 100,100"></polygon>
+                            </svg>
+                        </button>
+                        <button type="buton" id="down">
+                            <svg viewBox="0 0 100 100">
+                                <polygon points="0,0 50,100 100,0"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="ul rps-window">
+                        <div id="container">
+                            <div class="wrapper">
+                                <div class="disable">rock</div>
+                                <div class="begin">paper</div>
+                                <div class="previous">scissors</div>
+                                <div class="current">rock</div>
+                                <div class="next">paper</div>
+                                <div class="end">scissors</div>
+                                <div class="disable">rock</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rps-window">
+                    <div class="ul">
+                        scissors
+                    </div>
+                </div>
+            </div>
+            <div id="select">
+                <button type="button">Start</button>
+                <button type="button">Reset</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        document.querySelector("#firefox-is-new-ie").remove();
+        document.querySelector("#main-screen").classList.replace("hide", "center-flex");
+    </script>
 </body>
 
 </html>
