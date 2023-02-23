@@ -9,6 +9,9 @@ function rollIntro(lineNum) {
         "You must win the game of rock, paper, scissors", "For great justice!"];
     const line = lines[lineNum];
 
+    if (!document.querySelector("#intro"))
+        return;
+
     if (!line) { //typewriter eventually return an invalid line number
         setTimeout(drawCloseButton, 1000);
         return;
