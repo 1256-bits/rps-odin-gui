@@ -75,10 +75,11 @@
 }
 
 #game {
-    width: 50%;
+    max-width: 50%;
     max-height: 50%;
     border: solid 5px red;
     padding: 2rem;
+    gap: 5em;
 }
 
 #windows {
@@ -108,6 +109,26 @@
 #buttons>button {
     all: unset;
     width: 10px;
+}
+
+#select {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}
+
+#select>button {
+    font-size: 1rem;
+    padding: 0.5em 2em;
+    border-radius: 1em;
+    border: none;
+    box-shadow: 0px 5px grey;
+    transition: all .05s linear;
+}
+
+#select>button:active {
+    box-shadow: none;
+    transform: translateY(5px);
 }
 
 body {
