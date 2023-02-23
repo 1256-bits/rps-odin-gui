@@ -77,9 +77,15 @@
 #game {
     max-width: 50%;
     max-height: 50%;
-    border: solid 5px red;
     padding: 2rem;
     gap: 5em;
+    background-color: darkgrey;
+    /* background: linear-gradient(45deg, darkgrey, white, darkgrey); */
+    border-radius: 1em;
+}
+
+.shine {
+    background: linear-gradient(45deg, darkgrey, white, darkgrey);
 }
 
 #windows {
@@ -95,6 +101,7 @@
     height: 2em;
     padding-inline: 5em;
     border-radius: 1em;
+    background-color: white;
 }
 
 #buttons {
@@ -118,6 +125,7 @@
 }
 
 #select>button {
+    background: radial-gradient(rgb(240, 240, 240) 50%, rgb(211, 211, 211));
     font-size: 1rem;
     padding: 0.5em 2em;
     border-radius: 1em;
@@ -129,6 +137,10 @@
 #select>button:active {
     box-shadow: none;
     transform: translateY(5px);
+}
+
+#main-screen {
+    background: linear-gradient(black, rgb(31, 31, 58), black);
 }
 
 body {
