@@ -1,6 +1,7 @@
 const delay = 30;
 let i = 0; //does it have to be global?
 const intro = document.querySelector("#intro");
+document.addEventListener("keydown", handleKeypress);
 
 function rollIntro(lineNum) {
     let isLastLine = false;
@@ -48,9 +49,9 @@ function typewriter(p, line, lineNum, isLastLine) {
         const children = (isLastLine) ? intro.querySelectorAll("p") : intro.querySelectorAll(":not(:last-child)");
         const width = +getComputedStyle(intro)["width"].slice(0, -2) - 20 + "px"; // 20: 8px padding, 2px border, 10px gap.
         children.forEach(child => child.style.width = width); //And if I use calc() the animation breaks. Wonderful!
-        if(isLastLine)
+        if (isLastLine)
             children.forEach(child => child.style.width = "calc(100% - 19px)"); //allows them to resize after the intro is finished.
-            //19 - magic number.
+        //19 - magic number.
     }
 
     if (i >= line.length) {
@@ -69,20 +70,30 @@ function typewriter(p, line, lineNum, isLastLine) {
 function drawCloseButton() {
     const close = document.querySelector("#close-intro");
     close.classList.replace("op-0", "op-100");
-    close.addEventListener("click", () => {
-        const container = document.querySelector(":has( > #intro)");
-        container.classList.replace("op-100","op-0");
-        container.addEventListener("transitionstart", mainScreenTurnOn);
-        container.addEventListener("transitionend", (e) => e.target.remove());
-    });
+    close.addEventListener("click", closeIntro);
 }
-
-// rollIntro(0);
 
 function mainScreenTurnOn(e) {
     e.target.style.cssText = `
         position: absolute;
         width: 100%;
     `
-    document.querySelector("#main-screen").classList.replace("hide","center-flex");
+    const mainScreen = document.querySelector("#main-screen");
+    mainScreen.classList.replace("hide", "center-flex");
 }
+
+function handleKeypress(e) {
+    const key = e.key;
+    console.log(key);
+    if (key === "Escape")
+        closeIntro();
+}
+
+function closeIntro() {
+    const container = document.querySelector(":has( > #intro)");
+    container.classList.replace("op-100", "op-0");
+    container.addEventListener("transitionstart", mainScreenTurnOn);
+    container.addEventListener("transitionend", (e) => e.target.remove());
+}
+
+rollIntro(0);
