@@ -85,14 +85,16 @@ function mainScreenTurnOn(e) {
 }
 
 function handleKeypress(e) {
+    const key = e.key;
+    if (key === "Escape") {
+        closeIntro();
+        return;
+    }
     clearTimeout(escTimeout);
     const esc = document.querySelector("#escape-message")
     esc.classList.replace("op-0", "op-100");
     escTimeout = setTimeout(() => esc.classList.replace("op-100", "op-0"), 1000);
-    const key = e.key;
     console.log(key);
-    if (key === "Escape")
-        closeIntro();
 }
 
 function closeIntro() {
