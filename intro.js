@@ -1,5 +1,6 @@
 const delay = 30;
 let i = 0; //does it have to be global?
+let currentTimeout;
 const intro = document.querySelector("#intro");
 document.addEventListener("keydown", handleKeypress);
 
@@ -9,11 +10,8 @@ function rollIntro(lineNum) {
         "You must win the game of rock, paper, scissors", "For great justice!"];
     const line = lines[lineNum];
 
-    if (!document.querySelector("#intro"))
-        return;
-
     if (!line) { //typewriter eventually return an invalid line number
-        setTimeout(drawCloseButton, 1000);
+        currentTimeout = setTimeout(drawCloseButton, 1000);
         return;
     }
 
@@ -24,7 +22,7 @@ function rollIntro(lineNum) {
 
     if (lineNum == lines.length - 1)
         isLastLine = true;
-    setTimeout(typewriter, 1000, p, line, lineNum, isLastLine);
+    currentTimeout = setTimeout(typewriter, 1000, p, line, lineNum, isLastLine);
 }
 
 
@@ -66,7 +64,7 @@ function typewriter(p, line, lineNum, isLastLine) {
     }
 
     i++;
-    setTimeout(typewriter, delay, p, line, lineNum, isLastLine);
+    currentTimeout = setTimeout(typewriter, delay, p, line, lineNum, isLastLine);
 }
 
 
@@ -95,6 +93,8 @@ function handleKeypress(e) {
 function closeIntro() {
     const container = document.querySelector(":has( > #intro)");
     container.classList.replace("op-100", "op-0");
+    if (currentTimeout)
+        clearTimeout(currentTimeout);
     container.addEventListener("transitionstart", mainScreenTurnOn);
     container.addEventListener("transitionend", (e) => e.target.remove());
 }
