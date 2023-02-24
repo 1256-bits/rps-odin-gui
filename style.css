@@ -143,6 +143,32 @@
     background: linear-gradient(black, rgb(31, 31, 58), black);
 }
 
+#escape-message {
+    color: white;
+    position: absolute;
+    font-size: small;
+    bottom: 1em;
+    left: 0.5em;
+}
+
+.fade-in-anim {
+    animation: fade-in 1s;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+#escape-message>span {
+    font-style: italic;
+}
+
 body {
     margin: 0;
 }
