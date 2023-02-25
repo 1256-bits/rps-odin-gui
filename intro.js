@@ -5,7 +5,7 @@ let escTimeout;
 let skipInterval, progress;
 const intro = document.querySelector("#intro");
 document.addEventListener("keydown", handleKeypress);
-document.addEventListener("keyup", keyUp);
+document.addEventListener("keyup", introKeyUp);
 
 function rollIntro(lineNum) {
     let isLastLine = false;
@@ -112,10 +112,10 @@ function closeIntro() {
     container.addEventListener("transitionstart", mainScreenTurnOn);
     container.addEventListener("transitionend", (e) => e.target.remove());
     document.removeEventListener("keydown", handleKeypress);
-    document.removeEventListener("keyup", keyUp);
+    document.removeEventListener("keyup", introKeyUp);
 }
 
-function keyUp(e) {
+function introKeyUp(e) {
     clearInterval(skipInterval);
     skipInterval = "";
     document.querySelector("#skip-progress-bar").classList.replace("op-100", "op-0");
