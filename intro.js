@@ -90,7 +90,7 @@ function handleKeypress(e) {
     const key = e.key;
     if (key === "Escape" && !skipInterval) {
         const bar = document.querySelector("#skip-progress-bar");
-        bar.classList.replace("op-0","op-100");
+        bar.classList.replace("op-0", "op-100");
         const root = document.querySelector(":root");
         progress = 100;
         skipInterval = setInterval(moveProgressBar, 20, root);
@@ -111,12 +111,14 @@ function closeIntro() {
         clearTimeout(currentTimeout);
     container.addEventListener("transitionstart", mainScreenTurnOn);
     container.addEventListener("transitionend", (e) => e.target.remove());
+    document.removeEventListener("keydown", handleKeypress);
+    document.removeEventListener("keyup", keyUp);
 }
 
 function keyUp(e) {
     clearInterval(skipInterval);
     skipInterval = "";
-    document.querySelector("#skip-progress-bar").classList.replace("op-100","op-0");
+    document.querySelector("#skip-progress-bar").classList.replace("op-100", "op-0");
     return;
 }
 
