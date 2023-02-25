@@ -143,17 +143,31 @@
     background: linear-gradient(black, rgb(31, 31, 58), black);
 }
 
-#escape-message {
-    color: white;
+.abs-bottom-l {
     position: absolute;
-    font-size: small;
     bottom: 1em;
     left: 0.5em;
+}
+
+#escape-message {
+    color: white;
+    font-size: small;
     transition-duration: .5s;
 }
 
 #escape-message>span {
     font-style: italic;
+}
+
+div:has(>#skip-progress-bar) {
+    display: flex;
+}
+
+#skip-progress-bar {
+    background-color: rgb(168, 168, 168);
+    border-radius: 1em;
+    width: 6em;
+    height: 0.5em;
 }
 
 body {
