@@ -33,6 +33,7 @@
 :root {
     --y: 0em;
     --wrapper-y: -1.2em;
+    --progress: 100%;
 }
 
 svg {

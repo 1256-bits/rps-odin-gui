@@ -1,6 +1,11 @@
 const delay = 30;
 let i = 0; //does it have to be global?
+let currentTimeout;
+let escTimeout;
+let skipInterval, progress;
 const intro = document.querySelector("#intro");
+document.addEventListener("keydown", handleKeypress);
+document.addEventListener("keyup", introKeyUp);
 
 function rollIntro(lineNum) {
     let isLastLine = false;
@@ -9,7 +14,7 @@ function rollIntro(lineNum) {
     const line = lines[lineNum];
 
     if (!line) { //typewriter eventually return an invalid line number
-        setTimeout(drawCloseButton, 1000);
+        currentTimeout = setTimeout(drawCloseButton, 1000);
         return;
     }
 
@@ -20,7 +25,7 @@ function rollIntro(lineNum) {
 
     if (lineNum == lines.length - 1)
         isLastLine = true;
-    setTimeout(typewriter, 1000, p, line, lineNum, isLastLine);
+    currentTimeout = setTimeout(typewriter, 1000, p, line, lineNum, isLastLine);
 }
 
 
@@ -48,9 +53,9 @@ function typewriter(p, line, lineNum, isLastLine) {
         const children = (isLastLine) ? intro.querySelectorAll("p") : intro.querySelectorAll(":not(:last-child)");
         const width = +getComputedStyle(intro)["width"].slice(0, -2) - 20 + "px"; // 20: 8px padding, 2px border, 10px gap.
         children.forEach(child => child.style.width = width); //And if I use calc() the animation breaks. Wonderful!
-        if(isLastLine)
+        if (isLastLine)
             children.forEach(child => child.style.width = "calc(100% - 19px)"); //allows them to resize after the intro is finished.
-            //19 - magic number.
+        //19 - magic number.
     }
 
     if (i >= line.length) {
@@ -62,27 +67,80 @@ function typewriter(p, line, lineNum, isLastLine) {
     }
 
     i++;
-    setTimeout(typewriter, delay, p, line, lineNum, isLastLine);
+    currentTimeout = setTimeout(typewriter, delay, p, line, lineNum, isLastLine);
 }
 
 
 function drawCloseButton() {
     const close = document.querySelector("#close-intro");
     close.classList.replace("op-0", "op-100");
-    close.addEventListener("click", () => {
-        const container = document.querySelector(":has( > #intro)");
-        container.classList.replace("op-100","op-0");
-        container.addEventListener("transitionstart", mainScreenTurnOn);
-        container.addEventListener("transitionend", (e) => e.target.remove());
-    });
+    close.addEventListener("click", closeIntro);
 }
-
-// rollIntro(0);
 
 function mainScreenTurnOn(e) {
     e.target.style.cssText = `
         position: absolute;
         width: 100%;
     `
-    document.querySelector("#main-screen").classList.replace("hide","center-flex");
+    const mainScreen = document.querySelector("#main-screen");
+    mainScreen.classList.replace("hide", "center-flex");
 }
+
+function handleKeypress(e) {
+    const key = e.key;
+    const esc = document.querySelector("#escape-message")
+    if (key === "Escape" && !skipInterval) {
+        const bar = document.querySelector("#skip-progress-bar");
+        bar.classList.replace("op-0", "op-100");
+        const root = document.querySelector(":root");
+        progress = 100;
+        esc.classList.add("hide");
+        skipInterval = setInterval(moveProgressBar, 20, root);
+        return;
+    }
+    else if (!skipInterval) {
+        clearTimeout(escTimeout);
+        esc.classList.replace("op-0", "op-100");
+        escTimeout = setTimeout(() => esc.classList.replace("op-100", "op-0"), 1000);
+    }
+}
+
+function closeIntro() {
+    const container = document.querySelector(":has( > #intro)");
+    container.classList.replace("op-100", "op-0");
+    if (currentTimeout)
+        clearTimeout(currentTimeout);
+    container.addEventListener("transitionstart", mainScreenTurnOn);
+    container.addEventListener("transitionend", (e) => e.target.remove());
+    document.removeEventListener("keydown", handleKeypress);
+    document.removeEventListener("keyup", introKeyUp);
+}
+
+function introKeyUp(e) {
+    if (e.key === "Escape") {
+        console.log("???")
+        clearInterval(skipInterval);
+        skipInterval = "";
+        const skip = document.querySelector("#skip-progress-bar");
+        skip.classList.replace("op-100", "op-0");
+        const unhide = () => {
+            const esc = document.querySelector("#escape-message")
+            esc.classList.remove("hide");
+            skip.removeEventListener("transitionend", unhide)
+        }
+        skip.addEventListener("transitionend", unhide);
+    }
+}
+
+function moveProgressBar(root) {
+    progress -= 2;
+    root.style.setProperty("--progress", `${progress}%`);
+    if (progress == 0) {
+        clearInterval(skipInterval)
+        skipInterval = "";
+        document.querySelector("#skip-progress-bar").remove();
+        closeIntro();
+    }
+}
+
+rollIntro(0);
