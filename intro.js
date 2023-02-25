@@ -70,7 +70,6 @@ function typewriter(p, line, lineNum, isLastLine) {
     currentTimeout = setTimeout(typewriter, delay, p, line, lineNum, isLastLine);
 }
 
-
 function drawCloseButton() {
     const close = document.querySelector("#close-intro");
     close.classList.replace("op-0", "op-100");
@@ -118,7 +117,6 @@ function closeIntro() {
 
 function introKeyUp(e) {
     if (e.key === "Escape") {
-        console.log("???")
         clearInterval(skipInterval);
         skipInterval = "";
         const skip = document.querySelector("#skip-progress-bar");
