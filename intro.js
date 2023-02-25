@@ -90,9 +90,9 @@ function handleKeypress(e) {
     const key = e.key;
     if (key === "Escape" && !skipInterval) {
         const bar = document.querySelector("#skip-progress-bar");
-        bar.classList.remove("hide");
+        bar.classList.replace("op-0","op-100");
         const root = document.querySelector(":root");
-        progress = +getComputedStyle(root).getPropertyValue("--progress").replace("%", "");
+        progress = 100;
         skipInterval = setInterval(moveProgressBar, 20, root);
         return;
     }
@@ -115,6 +115,8 @@ function closeIntro() {
 
 function keyUp(e) {
     clearInterval(skipInterval);
+    skipInterval = "";
+    document.querySelector("#skip-progress-bar").classList.replace("op-100","op-0");
     return;
 }
 
