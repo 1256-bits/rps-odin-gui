@@ -2,8 +2,10 @@ const delay = 30;
 let i = 0; //does it have to be global?
 let currentTimeout;
 let escTimeout;
+let skipInterval, progress;
 const intro = document.querySelector("#intro");
 document.addEventListener("keydown", handleKeypress);
+document.addEventListener("keyup", keyUp);
 
 function rollIntro(lineNum) {
     let isLastLine = false;
@@ -86,15 +88,20 @@ function mainScreenTurnOn(e) {
 
 function handleKeypress(e) {
     const key = e.key;
-    if (key === "Escape") {
-        closeIntro();
+    if (key === "Escape" && !skipInterval) {
+        const bar = document.querySelector("#skip-progress-bar");
+        bar.classList.remove("hide");
+        const root = document.querySelector(":root");
+        progress = +getComputedStyle(root).getPropertyValue("--progress").replace("%", "");
+        skipInterval = setInterval(moveProgressBar, 20, root);
         return;
     }
-    clearTimeout(escTimeout);
-    const esc = document.querySelector("#escape-message")
-    esc.classList.replace("op-0", "op-100");
-    escTimeout = setTimeout(() => esc.classList.replace("op-100", "op-0"), 1000);
-    console.log(key);
+    else if (!skipInterval) {
+        clearTimeout(escTimeout);
+        const esc = document.querySelector("#escape-message")
+        esc.classList.replace("op-0", "op-100");
+        escTimeout = setTimeout(() => esc.classList.replace("op-100", "op-0"), 1000);
+    }
 }
 
 function closeIntro() {
@@ -104,6 +111,23 @@ function closeIntro() {
         clearTimeout(currentTimeout);
     container.addEventListener("transitionstart", mainScreenTurnOn);
     container.addEventListener("transitionend", (e) => e.target.remove());
+}
+
+function keyUp(e) {
+    clearInterval(skipInterval);
+    return;
+}
+
+function moveProgressBar(root) {
+    progress -= 2;
+    console.log(Date.now());
+    root.style.setProperty("--progress", `${progress}%`);
+    if (progress == 0) {
+        clearInterval(skipInterval)
+        skipInterval = "";
+        document.querySelector("#skip-progress-bar").remove();
+        closeIntro();
+    }
 }
 
 rollIntro(0);

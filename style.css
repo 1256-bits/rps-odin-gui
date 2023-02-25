@@ -168,6 +168,7 @@ div:has(>#skip-progress-bar) {
     border-radius: 1em;
     width: 6em;
     height: 0.5em;
+    flex-basis: var(--progress);
 }
 
 body {
