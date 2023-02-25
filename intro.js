@@ -88,17 +88,18 @@ function mainScreenTurnOn(e) {
 
 function handleKeypress(e) {
     const key = e.key;
+    const esc = document.querySelector("#escape-message")
     if (key === "Escape" && !skipInterval) {
         const bar = document.querySelector("#skip-progress-bar");
         bar.classList.replace("op-0", "op-100");
         const root = document.querySelector(":root");
         progress = 100;
+        esc.classList.add("hide");
         skipInterval = setInterval(moveProgressBar, 20, root);
         return;
     }
     else if (!skipInterval) {
         clearTimeout(escTimeout);
-        const esc = document.querySelector("#escape-message")
         esc.classList.replace("op-0", "op-100");
         escTimeout = setTimeout(() => esc.classList.replace("op-100", "op-0"), 1000);
     }
@@ -116,15 +117,23 @@ function closeIntro() {
 }
 
 function introKeyUp(e) {
-    clearInterval(skipInterval);
-    skipInterval = "";
-    document.querySelector("#skip-progress-bar").classList.replace("op-100", "op-0");
-    return;
+    if (e.key === "Escape") {
+        console.log("???")
+        clearInterval(skipInterval);
+        skipInterval = "";
+        const skip = document.querySelector("#skip-progress-bar");
+        skip.classList.replace("op-100", "op-0");
+        const unhide = () => {
+            const esc = document.querySelector("#escape-message")
+            esc.classList.remove("hide");
+            skip.removeEventListener("transitionend", unhide)
+        }
+        skip.addEventListener("transitionend", unhide);
+    }
 }
 
 function moveProgressBar(root) {
     progress -= 2;
-    console.log(Date.now());
     root.style.setProperty("--progress", `${progress}%`);
     if (progress == 0) {
         clearInterval(skipInterval)
