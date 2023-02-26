@@ -58,3 +58,7 @@ function scrollKeyDown(e) {
     else if (e.key === "ArrowDown")
         scroll("down");
 }
+
+function scrollClick() {
+    scroll(this.id);
+}
