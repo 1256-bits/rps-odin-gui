@@ -70,7 +70,6 @@ function typewriter(p, line, lineNum, isLastLine) {
     currentTimeout = setTimeout(typewriter, delay, p, line, lineNum, isLastLine);
 }
 
-
 function drawCloseButton() {
     const close = document.querySelector("#close-intro");
     close.classList.replace("op-0", "op-100");
@@ -84,6 +83,20 @@ function mainScreenTurnOn(e) {
     `
     const mainScreen = document.querySelector("#main-screen");
     mainScreen.classList.replace("hide", "center-flex");
+    document.addEventListener("keydown", scrollKeyDown);
+    document.addEventListener("wheel", scrollWheel);
+    const up = document.querySelector("#up");
+    const down = document.querySelector("#down");
+    up.addEventListener("click", scrollClick);
+    down.addEventListener("click", scrollClick);
+    const aiWrap = document.querySelector("#ai-wrap");
+    for (let i = 0; i < 30; i++) {
+        for (let j of ["rock", "paper", "scissors"]) {
+            const p = document.createElement("p")
+            p.innerText = j;
+            aiWrap.append(p);
+        }
+    }
 }
 
 function handleKeypress(e) {
@@ -118,7 +131,6 @@ function closeIntro() {
 
 function introKeyUp(e) {
     if (e.key === "Escape") {
-        console.log("???")
         clearInterval(skipInterval);
         skipInterval = "";
         const skip = document.querySelector("#skip-progress-bar");
