@@ -83,6 +83,8 @@ function mainScreenTurnOn(e) {
     `
     const mainScreen = document.querySelector("#main-screen");
     mainScreen.classList.replace("hide", "center-flex");
+    document.addEventListener("keydown", scrollKeyDown);
+    document.addEventListener("wheel", scrollWheel);
 }
 
 function handleKeypress(e) {

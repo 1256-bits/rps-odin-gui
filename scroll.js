@@ -1,6 +1,6 @@
 let rateLimit = false;
 
-function scroll(e) {
+function scroll(direction) {
     if (rateLimit)
         return;
     const root = document.querySelector(":root");
@@ -14,7 +14,7 @@ function scroll(e) {
     const y = +getComputedStyle(root).getPropertyValue("--y").replace("em", "");
     const wrapperY = +getComputedStyle(root).getPropertyValue("--wrapper-y").replace("em", "");
 
-    if (e.key === "ArrowUp") {
+    if (direction === "up") {
         hidden[1].remove();
         end.classList.replace("end", "disable");
         previous.classList.replace("previous", "current");
@@ -29,7 +29,7 @@ function scroll(e) {
         wrapper.prepend(newHidden);
     }
 
-    else if (e.key === "ArrowDown") {
+    else if (direction === "down") {
         hidden[0].remove();
         begin.classList.replace("begin", "disable");
         previous.classList.replace("previous", "begin");
@@ -46,4 +46,15 @@ function scroll(e) {
 
     rateLimit = true;
     setTimeout(() => rateLimit = false, 150);
+}
+
+function scrollWheel(e) {
+    scroll((e.deltaY > 0) ? "down" : "up");
+}
+
+function scrollKeyDown(e) {
+    if (e.key === "ArrowUp")
+        scroll("up");
+    else if (e.key === "ArrowDown")
+        scroll("down");
 }
