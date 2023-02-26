@@ -89,6 +89,14 @@ function mainScreenTurnOn(e) {
     const down = document.querySelector("#down");
     up.addEventListener("click", scrollClick);
     down.addEventListener("click", scrollClick);
+    const aiWrap = document.querySelector("#ai-wrap");
+    for (let i = 0; i < 30; i++) {
+        for (let j of ["rock", "paper", "scissors"]) {
+            const p = document.createElement("p")
+            p.innerText = j;
+            aiWrap.append(p);
+        }
+    }
 }
 
 function handleKeypress(e) {

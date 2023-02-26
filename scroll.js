@@ -62,3 +62,13 @@ function scrollKeyDown(e) {
 function scrollClick() {
     scroll(this.id);
 }
+
+function aiScroll() {
+    const aiWrap = document.querySelector("#aiWrap");
+    setInterval(() => {
+        const root = document.querySelector(":root");
+        const y = +getComputedStyle(root).getPropertyValue("--ai-y").replace("em", "");
+        console.log(y)
+        root.style.setProperty("--ai-y", y - 2 + "em");
+    }, 200);
+}

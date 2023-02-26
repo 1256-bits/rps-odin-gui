@@ -34,6 +34,11 @@
     --y: 0em;
     --wrapper-y: -1.2em;
     --progress: 100%;
+    --ai-y: 0em;
+}
+
+#ai-wrap {
+    transform: translateY(var(--ai-y));
 }
 
 svg {
