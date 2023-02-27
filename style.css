@@ -99,9 +99,14 @@
 .rps-window {
     border: 2px solid black;
     height: 2em;
+    width: 3em;
     padding-inline: 5em;
     border-radius: 1em;
     background-color: white;
+}
+
+.rps-window:has(#ai-wrap) {
+    position: relative;
 }
 
 #buttons {

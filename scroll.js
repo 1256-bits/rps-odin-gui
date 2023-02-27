@@ -1,4 +1,5 @@
 let rateLimit = false;
+let scrollInterval;
 
 function scroll(direction) {
     if (rateLimit)
@@ -64,11 +65,23 @@ function scrollClick() {
 }
 
 function aiScroll() {
-    const aiWrap = document.querySelector("#aiWrap");
-    setInterval(() => {
-        const root = document.querySelector(":root");
-        const y = +getComputedStyle(root).getPropertyValue("--ai-y").replace("em", "");
-        console.log(y)
-        root.style.setProperty("--ai-y", y - 2 + "em");
-    }, 200);
+    const aiWrap = document.querySelector("#ai-wrap");
+    aiWrap.style.setProperty("transition", "all 1s linear");
+    aiScroll.interval = setInterval(aiInterval, 200);
 }
+
+function aiInterval() {
+    const root = document.querySelector(":root");
+    const y = +getComputedStyle(root).getPropertyValue("--ai-y").replace("em", "");
+    console.log(y)
+    root.style.setProperty("--ai-y", y - 2 + "em");
+    if (Math.abs(y) >= 50) {
+        const aiWrap = document.querySelector("#ai-wrap");
+        aiWrap.style.setProperty("transition", "all .1s linear");
+    }
+}
+
+/* How to make aiScroll stop on the random value:
+    1) Start scrolling for N em
+    2) Dep. on starting value add X em to the scrolling distance
+*/

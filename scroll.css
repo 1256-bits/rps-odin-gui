@@ -34,11 +34,18 @@
     --y: 0em;
     --wrapper-y: -1.2em;
     --progress: 100%;
-    --ai-y: 0em;
+    --ai-y: -1.2em;
 }
 
 #ai-wrap {
+    position: absolute;
     transform: translateY(var(--ai-y));
+    left: 35%;
+    transition: all 1s linear;
+}
+
+#ai-wrap>p {
+    text-align: center;
 }
 
 svg {
