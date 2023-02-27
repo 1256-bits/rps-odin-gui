@@ -124,7 +124,14 @@ function closeIntro() {
     if (currentTimeout)
         clearTimeout(currentTimeout);
     container.addEventListener("transitionstart", mainScreenTurnOn);
-    container.addEventListener("transitionend", (e) => e.target.remove());
+    container.addEventListener("transitionend", (e) => {
+        e.target.remove()
+        const aiWrapContainer = document.querySelector(".rps-window:has(#ai-wrap)");
+        const aiWrap = document.querySelector("#ai-wrap");
+        aiWrap.style.position = "absolute";
+        aiWrapContainer.style.position = "relative";
+        
+    });
     document.removeEventListener("keydown", handleKeypress);
     document.removeEventListener("keyup", introKeyUp);
 }

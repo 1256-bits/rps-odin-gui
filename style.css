@@ -106,7 +106,7 @@
 }
 
 .rps-window:has(#ai-wrap) {
-    position: relative;
+    /* position: relative; */
 }
 
 #buttons {

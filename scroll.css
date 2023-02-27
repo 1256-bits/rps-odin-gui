@@ -38,7 +38,7 @@
 }
 
 #ai-wrap {
-    position: absolute;
+    /* position: absolute; */
     transform: translateY(var(--ai-y));
     left: 35%;
     transition: all 1s linear;
