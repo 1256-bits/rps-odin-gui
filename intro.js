@@ -91,12 +91,15 @@ function mainScreenTurnOn(e) {
     down.addEventListener("click", scrollClick);
     const aiWrap = document.querySelector("#ai-wrap");
     for (let i = 0; i < 30; i++) {
-        for (let j of ["rock", "paper", "scissors"]) {
+        for (let j of ["scissors", "rock", "paper"]) {
             const p = document.createElement("p")
             p.innerText = j;
             aiWrap.append(p);
         }
     }
+    aiWrap.children[0].classList.add("previous");
+    aiWrap.children[1].classList.add("current");
+    aiWrap.children[2].classList.add("next");
 }
 
 function handleKeypress(e) {
@@ -130,7 +133,7 @@ function closeIntro() {
         const aiWrap = document.querySelector("#ai-wrap");
         aiWrap.style.position = "absolute";
         aiWrapContainer.style.position = "relative";
-        
+
     });
     document.removeEventListener("keydown", handleKeypress);
     document.removeEventListener("keyup", introKeyUp);

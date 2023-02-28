@@ -74,7 +74,7 @@ function aiInterval() {
     const root = document.querySelector(":root");
     const y = +getComputedStyle(root).getPropertyValue("--ai-y").replace("em", "");
     console.log(y)
-    root.style.setProperty("--ai-y", y - 2 + "em");
+    root.style.setProperty("--ai-y", y - 1 + "em");
     if (Math.abs(y) >= 50) {
         const aiWrap = document.querySelector("#ai-wrap");
         aiWrap.style.setProperty("transition", "all .1s linear");
