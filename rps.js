@@ -1,53 +1,35 @@
-const rps = (player, ai) => {
-	const dict = { "R": "rock", "P": "paper", "S": "scissors" };
-	const pva = `${dict[player]} vs ${dict[ai]}.`;
-	if (player === ai)
-		return pva + "Draw";
-	switch (player) {
-		case "R":
-			if (ai === "P")
-				return pva + "You lose.";
-			else
-				return pva + "You win!";
-		case "P":
-			if (ai === "S")
-				return pva + "You lose.";
-			else
-				return pva + "You win!";
-		case "S":
-			if (ai === "R")
-				return pva + "You lose.";
-			else
-				return pva + "You win!";
+function rps(player, ai) {
+	if (player === ai) {
+		draw();
+	}
+	else if ((player === "rock" && ai === "scissors") ||
+		(player === "paper" && ai === "rock") ||
+		(player === "scissors" && ai === "paper")) {
+		win();
+	}
+	else {
+		loss();
 	}
 }
 
-const plInput = () => prompt("[R]ock, [P]aper, [S]cissors");
+const getPlayer = () => document.querySelector(".wrapper > .current").textContent;
 
-const aiInput = () => {
-	const rps = { 0: "R", 1: "P", 2: "S" };
-	return rps[Math.trunc(Math.random() * 3)];
+function getAi() {
+	aiScroll(
+		Math.trunc(Math.random() * 5),
+		["rock", "paper", "scissors"][Math.trunc(Math.random() * 2)]
+	);
+	return document.querySelector("#ai-wrap > .current").textContent;
 }
 
+function win() {
+	
+}
 
+function loss() {
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function draw() {
+	
+}
