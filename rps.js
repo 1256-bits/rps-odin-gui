@@ -17,13 +17,13 @@ const getPlayer = () => document.querySelector(".wrapper > .current").textConten
 function getAi() {
 	aiScroll(
 		Math.trunc(Math.random() * 5),
-		["rock", "paper", "scissors"][Math.trunc(Math.random() * 2)]
+		["rock", "paper", "scissors"][Math.trunc(Math.random() * 2) + 1]
 	);
 	return document.querySelector("#ai-wrap > .current").textContent;
 }
 
 function win() {
-	
+
 }
 
 function loss() {
@@ -31,5 +31,5 @@ function loss() {
 }
 
 function draw() {
-	
+
 }
