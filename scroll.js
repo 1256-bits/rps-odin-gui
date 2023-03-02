@@ -64,34 +64,19 @@ function scrollClick() {
     scroll(this.id);
 }
 
-function aiScroll() {
-    const aiWrap = document.querySelector("#ai-wrap");
-    aiScroll.intervalSpeed = 100;
-    aiScroll.interval = setInterval(aiInterval, 100);
+function aiScroll(count, result) {
     aiScroll.root = document.querySelector(":root");
+    aiScroll.count = count;
+    aiScroll.result = result;
+    aiScroll.interval = setInterval(() => {
+        const y = +getComputedStyle(aiScroll.root).getPropertyValue("--ai-y").replace("em", "");
+        aiScroll.root.style.setProperty("--ai-y", y - 1 + "em");
+        const next = document.querySelector("#ai-wrap > .next");
+        next.previousSibling.classList.replace("current", "previous");
+        next.classList.replace("next", "current");
+        next.nextSibling.classList.add("next");
+        aiScroll.count--;
+        if (aiScroll.count <= 0 && current.innerText === aiScroll.result)
+            clearInterval(aiScroll.interval);
+    },300);
 }
-
-function aiInterval() {
-    const y = +getComputedStyle(aiScroll.root).getPropertyValue("--ai-y").replace("em", "");
-    aiScroll.root.style.setProperty("--ai-y", y - 1 + "em");
-    const next = document.querySelector("#ai-wrap > .next");
-    next.previousSibling.classList.replace("current", "previous");
-    next.classList.replace("next", "current");
-    next.nextSibling.classList.add("next");
-    if (Math.trunc(Math.abs(y)) % 5 === 0 && Math.abs(y) >= 1) {
-        console.log(y)
-        clearInterval(aiScroll.interval)
-        // const aiWrap = document.querySelector("#ai-wrap");
-        const transSpeed = +getComputedStyle(aiScroll.root)
-            .getPropertyValue("--transition-speed")
-            .replace("s", "");
-        aiScroll.root.style.setProperty("--transition-speed",transSpeed + 0.1 + "s");
-        aiScroll.intervalSpeed += 100;
-        aiScroll.interval = setInterval(aiInterval, aiScroll.intervalSpeed);
-    }
-}
-
-/* How to make aiScroll stop on the random value:
-    1) Start scrolling for N em
-    2) Dep. on starting value add X em to the scrolling distance
-*/

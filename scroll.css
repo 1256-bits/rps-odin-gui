@@ -37,7 +37,7 @@
     --wrapper-y: -1.2em;
     --progress: 100%;
     --ai-y: -0.2em;
-    --transition-speed: .1s;
+    --transition-speed: .3s;
 }
 
 #ai-wrap {
