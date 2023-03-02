@@ -72,11 +72,12 @@ function aiScroll(count, result) {
         const y = +getComputedStyle(aiScroll.root).getPropertyValue("--ai-y").replace("em", "");
         aiScroll.root.style.setProperty("--ai-y", y - 1 + "em");
         const next = document.querySelector("#ai-wrap > .next");
-        next.previousSibling.classList.replace("current", "previous");
+        const current = next.previousSibling;
+        current.classList.replace("current", "previous");
         next.classList.replace("next", "current");
         next.nextSibling.classList.add("next");
         aiScroll.count--;
         if (aiScroll.count <= 0 && current.innerText === aiScroll.result)
             clearInterval(aiScroll.interval);
-    },300);
+    },200);
 }
