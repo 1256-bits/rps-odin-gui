@@ -66,8 +66,13 @@
     opacity: 100%;
 }
 
-.background {
+.background,
+.end {
     background-color: rgb(122, 24, 24);
+}
+
+.win {
+    background-color: rgb(19, 132, 19);
 }
 
 .hide {
