@@ -110,10 +110,6 @@
     background-color: white;
 }
 
-.rps-window:has(#ai-wrap) {
-    /* position: relative; */
-}
-
 #buttons {
     display: grid;
     grid-template-columns: 1fr;
