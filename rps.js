@@ -14,12 +14,12 @@ function rps(player, ai) {
 
 const getPlayer = () => document.querySelector(".wrapper > .current").textContent;
 
-function getAi() {
-	aiScroll(
-		Math.trunc(Math.random() * 5),
-		["rock", "paper", "scissors"][Math.trunc(Math.random() * 2) + 1]
-	);
-	return document.querySelector("#ai-wrap > .current").textContent;
+async function getAi() {
+	aiScroll(Math.trunc(Math.random() * 7) + 1);
+	return new Promise(resolve => {
+		document.addEventListener("scrollend", () =>
+			resolve(document.querySelector("#ai-wrap > .current").textContent));
+	});
 }
 
 function result(result, aiResult = "draw") {
@@ -30,6 +30,10 @@ function result(result, aiResult = "draw") {
 		ai.classList.toggle(aiResult);
 	}
 	colorSwap();
-	setTimeout(colorSwap, 10000);
-	
+	setTimeout(colorSwap, 1000);
+
+}
+
+async function roll() {
+	rps(getPlayer(), await getAi());
 }

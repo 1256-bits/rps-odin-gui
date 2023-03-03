@@ -64,15 +64,15 @@ function scrollClick() {
     scroll(this.id);
 }
 
-function aiScroll(count, result) {
+function aiScroll(count) {
     aiScroll.root = document.querySelector(":root");
     aiScroll.count = count;
-    aiScroll.result = result;
     aiScroll.interval = setInterval(() => {
         const next = document.querySelector("#ai-wrap > .next");
         const current = next.previousSibling;
-        if (aiScroll.count <= 0 && current.innerText === aiScroll.result) {
+        if (aiScroll.count <= 0) {
             clearInterval(aiScroll.interval);
+            document.querySelector("#ai-wrap").addEventListener("transitionend", resolveScroll);
             return;
         }
         const y = +getComputedStyle(aiScroll.root).getPropertyValue("--ai-y").replace("em", "");
@@ -82,4 +82,12 @@ function aiScroll(count, result) {
         next.nextSibling.classList.add("next");
         aiScroll.count--;
     }, 200);
+}
+
+function resolveScroll(e) {
+    if (e.propertyName !== "transform") {
+        return;
+    }
+    document.querySelector("#ai-wrap").removeEventListener("transitionend", resolveScroll);
+    document.dispatchEvent(new Event("scrollend"));
 }
