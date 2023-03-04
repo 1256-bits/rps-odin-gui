@@ -90,14 +90,7 @@ function mainScreenTurnOn(e) {
     up.addEventListener("click", scrollClick);
     down.addEventListener("click", scrollClick);
     const aiWrap = document.querySelector("#ai-wrap");
-    for (let i = 0; i < 30; i++) {
-        for (let j of ["scissors", "rock", "paper"]) {
-            const p = document.createElement("p")
-            p.innerText = j;
-            p.classList.add("trans-var");
-            aiWrap.append(p);
-        }
-    }
+    addElements(30);
     aiWrap.children[0].classList.add("previous");
     aiWrap.children[1].classList.add("current");
     aiWrap.children[2].classList.add("next");
@@ -163,6 +156,18 @@ function moveProgressBar(root) {
         skipInterval = "";
         document.querySelector("#skip-progress-bar").remove();
         closeIntro();
+    }
+}
+
+function addElements(count) {
+    const aiWrap = document.querySelector("#ai-wrap")
+    for (let i = 0; i < count; i++) {
+        for (let j of ["scissors", "rock", "paper"]) {
+            const p = document.createElement("p")
+            p.innerText = j;
+            p.classList.add("trans-var");
+            aiWrap.append(p);
+        }
     }
 }
 

@@ -98,12 +98,9 @@ function delPrevious() {
         .slice(0, -1).forEach(pr => pr.remove());
     aiWrap.classList.toggle("trans-var");
     const root = document.querySelector(":root");
-    // root.style.setProperty("--transition-speed", "0s");
     root.style.setProperty("--ai-y", "-0.2em");
-    // const handle() => {
-
-    //     root.style.setProperty("--transition-speed", ".2s");
-    // },
-    // aiWrap.addEventListener("transitionend", { once: true });
     setTimeout(() => aiWrap.classList.toggle("trans-var"), 100);
+    if (aiWrap.children.length < 11) {
+        addElements(8);
+    }
 }
