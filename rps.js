@@ -28,12 +28,12 @@ async function getAi() {
 function result(result, aiResult = "draw") {
 	const bg = document.querySelector("#main-screen");
 	const [player, ai] = [...document.querySelectorAll(".rps-window")];
-	const colorSwap = () => {
-		player.classList.toggle(result);
-		ai.classList.toggle(aiResult);
-	}
-	colorSwap();
-	setTimeout(colorSwap, 1000);
+	player.classList.replace("white", result);
+	ai.classList.replace("white", aiResult);
+	setTimeout(() => {
+		player.classList.replace(result, "white");
+		ai.classList.replace(aiResult, "white");
+	}, 1000);
 	started = false;
 }
 

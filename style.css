@@ -107,6 +107,9 @@
     width: 3em;
     padding-inline: 5em;
     border-radius: 1em;
+}
+
+.white {
     background-color: white;
 }
 
