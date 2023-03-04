@@ -1,3 +1,5 @@
+let started = false;
+
 function rps(player, ai) {
 	delPrevious();
 	if (player === ai) {
@@ -32,9 +34,12 @@ function result(result, aiResult = "draw") {
 	}
 	colorSwap();
 	setTimeout(colorSwap, 1000);
-
+	started = false;
 }
 
 async function roll() {
+	if (started)
+		return;
+	started = true;
 	rps(getPlayer(), await getAi());
 }
