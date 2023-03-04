@@ -1,4 +1,5 @@
 function rps(player, ai) {
+	delPrevious();
 	if (player === ai) {
 		result("draw");
 	}

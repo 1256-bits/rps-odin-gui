@@ -94,6 +94,7 @@ function mainScreenTurnOn(e) {
         for (let j of ["scissors", "rock", "paper"]) {
             const p = document.createElement("p")
             p.innerText = j;
+            p.classList.add("trans-var");
             aiWrap.append(p);
         }
     }
