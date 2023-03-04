@@ -11,6 +11,10 @@
     margin-top: -0.5em;
 }
 
+.wrapper>div {
+    transition: all .3s linear;
+}
+
 
 #container {
     transition: all .3s linear;
@@ -43,11 +47,9 @@
     /* position: absolute; */
     transform: translateY(var(--ai-y));
     left: 35%;
-    transition: all .3s linear;
 }
 
-#ai-wrap,
-#ai-wrap>p {
+.trans-var {
     transition: all var(--transition-speed) linear;
 }
 
