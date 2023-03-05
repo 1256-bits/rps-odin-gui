@@ -94,6 +94,8 @@ function mainScreenTurnOn(e) {
     aiWrap.children[0].classList.add("previous");
     aiWrap.children[1].classList.add("current");
     aiWrap.children[2].classList.add("next");
+    document.querySelector("#select").firstElementChild
+        .addEventListener("click", roll, {once: true});
 }
 
 function handleKeypress(e) {

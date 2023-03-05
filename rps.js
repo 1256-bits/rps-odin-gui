@@ -33,13 +33,11 @@ function result(result, aiResult = "draw") {
 	setTimeout(() => {
 		player.classList.replace(result, "white");
 		ai.classList.replace(aiResult, "white");
+		document.querySelector("#select").firstElementChild
+			.addEventListener("click", roll, { once: true });
 	}, 1000);
-	started = false;
 }
 
 async function roll() {
-	if (started)
-		return;
-	started = true;
 	rps(getPlayer(), await getAi());
 }
