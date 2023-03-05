@@ -67,12 +67,12 @@ function scrollClick() {
 function aiScroll(count) {
     aiScroll.root = document.querySelector(":root");
     aiScroll.count = count;
+    document.querySelector("#ai-wrap").addEventListener("transitionend", resolveScroll);
     aiScroll.interval = setInterval(() => {
         const next = document.querySelector("#ai-wrap > .next");
         const current = next.previousSibling;
         if (aiScroll.count <= 0) {
             clearInterval(aiScroll.interval);
-            document.querySelector("#ai-wrap").addEventListener("transitionend", resolveScroll);
             return;
         }
         const y = +getComputedStyle(aiScroll.root).getPropertyValue("--ai-y").replace("em", "");
@@ -85,7 +85,7 @@ function aiScroll(count) {
 }
 
 function resolveScroll(e) {
-    if (e.propertyName !== "transform") {
+    if (e.propertyName !== "transform" || aiScroll.count !== 0) {
         return;
     }
     document.querySelector("#ai-wrap").removeEventListener("transitionend", resolveScroll);
