@@ -71,8 +71,13 @@
     background-color: rgb(122, 24, 24);
 }
 
+.loss {
+    box-shadow: 0px 0px 1em 0.3em rgb(122, 24, 24);
+}
+
 .win {
     background-color: rgb(19, 132, 19);
+    box-shadow: 0px 0px 1em 0.3em rgb(19, 132, 19);
 }
 
 .hide {
@@ -107,6 +112,7 @@
     width: 3em;
     padding-inline: 5em;
     border-radius: 1em;
+    transition: background-color 0.3s, box-shadow 0.3s linear;
 }
 
 .white {
