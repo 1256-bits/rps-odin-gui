@@ -30,9 +30,13 @@ function result(result, aiResult = "draw") {
 	const [player, ai] = [...document.querySelectorAll(".rps-window")];
 	player.classList.replace("white", result);
 	ai.classList.replace("white", aiResult);
+	document.querySelector("#main-screen")
+		.classList.replace("neutral", `bg-${result}`);
 	setTimeout(() => {
 		player.classList.replace(result, "white");
 		ai.classList.replace(aiResult, "white");
+		document.querySelector("#main-screen")
+			.classList.replace(`bg-${result}`,"neutral");
 		document.querySelector("#select").firstElementChild
 			.addEventListener("click", roll, { once: true });
 	}, 1000);

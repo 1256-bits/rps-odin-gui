@@ -155,7 +155,19 @@
 }
 
 #main-screen {
+    transition: background-color .3s linear;
+}
+
+.neutral {
     background: linear-gradient(black, rgb(31, 31, 58), black);
+}
+
+.bg-wln {
+    background: linear-gradient(black, rgb(31, 160, 31), black);
+}
+
+.bg-loss {
+    background: linear-gradient(black, rgb(207, 31, 31), black);
 }
 
 .abs-bottom-l {
