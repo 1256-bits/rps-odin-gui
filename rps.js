@@ -33,6 +33,7 @@ function result(result, aiResult = "draw") {
 	document.querySelector("#main-screen")
 		.classList.replace("neutral", `bg-${result}`);
 	animToggle();
+	updateBars(result, aiResult);
 	setTimeout(() => {
 		animToggle();
 		player.classList.replace(result, "white");
@@ -53,6 +54,24 @@ function animToggle() {
 		document.querySelector("#buttons")
 			.classList.toggle("shake");
 
+}
+
+function updateBars(player, ai) {
+	if (player === "draw")
+		return;
+	const vals = { win: 1.5, loss: -3 };
+	const fontSize = +getComputedStyle(document.querySelector(":root"))
+		.getPropertyValue("font-size").replace("px", "");
+	const bars = document.querySelectorAll(".bar");
+	bars.forEach(bar => {
+		const width = +getComputedStyle(bar).getPropertyValue("width").replace("px", "");
+		bar.style.width = (bar.hasAttribute("data-player")) ?
+			`${width / fontSize + vals[player]}rem` :
+			`${width / fontSize + vals[ai]}rem`;
+		console.log(+getComputedStyle(bar).getPropertyValue("width").replace("px", ""))
+		if (+getComputedStyle(bar).getPropertyValue("width").replace("px", "") > 12 * fontSize)
+			bar.style.width = "12rem";
+	});
 }
 
 async function roll() {
