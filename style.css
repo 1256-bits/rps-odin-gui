@@ -111,12 +111,11 @@
     width: 100%;
 }
 
-.bar,
-.ai-bar {
-    width: 11.6em;
+.bar {
+    width: 12rem;
     height: 0.2em;
     border-radius: 1em;
-    margin-inline: 0.8em;
+    margin-inline: 0.6em;
     background-color: rgb(0, 0, 0);
 }
 
