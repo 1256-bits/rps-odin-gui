@@ -32,14 +32,22 @@ function result(result, aiResult = "draw") {
 	ai.classList.replace("white", aiResult);
 	document.querySelector("#main-screen")
 		.classList.replace("neutral", `bg-${result}`);
+	animToggle();
 	setTimeout(() => {
 		player.classList.replace(result, "white");
 		ai.classList.replace(aiResult, "white");
+		animToggle();
 		document.querySelector("#main-screen")
-			.classList.replace(`bg-${result}`,"neutral");
+			.classList.replace(`bg-${result}`, "neutral");
 		document.querySelector("#select").firstElementChild
 			.addEventListener("click", roll, { once: true });
 	}, 1000);
+}
+
+function animToggle() {
+	const loser = document.querySelector(".loss");
+	if (loser)
+		loser.classList.toggle("shake");
 }
 
 async function roll() {
