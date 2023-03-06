@@ -111,6 +111,21 @@
     width: 100%;
 }
 
+.bar,
+.ai-bar {
+    width: 11.6em;
+    height: 0.2em;
+    border-radius: 1em;
+    margin-inline: 0.8em;
+    background-color: rgb(0, 0, 0);
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
 .rps-window {
     border: 2px solid black;
     height: 2em;
@@ -214,4 +229,20 @@ body {
 
 p {
     margin: 0;
+}
+
+.shake {
+    animation: shake 0.1s linear 0s 5;
+}
+
+@keyframes shake  {
+    0% {
+        transform: translateX(-2px);
+    }
+    50% {
+        transform: translateX(2px);
+    }
+    100% {
+        transform: translateX(-2px);
+    }
 }

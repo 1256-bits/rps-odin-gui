@@ -24,36 +24,42 @@
     <div class="vh-100 hide center-flex neutral" id="main-screen">
         <div id="game" class="center-flex">
             <div id="windows">
-                <div style="display: flex; flex-direction: row-reverse; gap: 1px;">
-                    <div id="buttons">
-                        <button type="button" id="up">
-                            <svg viewBox="0 0 100 100">
-                                <polygon points="0,100 50,0 100,100"></polygon>
-                            </svg>
-                        </button>
-                        <button type="buton" id="down">
-                            <svg viewBox="0 0 100 100">
-                                <polygon points="0,0 50,100 100,0"></polygon>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="ul rps-window white">
-                        <div id="container">
-                            <div class="wrapper">
-                                <div class="disable">rock</div>
-                                <div class="begin">paper</div>
-                                <div class="previous">scissors</div>
-                                <div class="current">rock</div>
-                                <div class="next">paper</div>
-                                <div class="end">scissors</div>
-                                <div class="disable">rock</div>
+                <div class="flex">
+                    <div style="display: flex; flex-direction: row-reverse; gap: 1px;">
+                        <div id="buttons">
+                            <button type="button" id="up">
+                                <svg viewBox="0 0 100 100">
+                                    <polygon points="0,100 50,0 100,100"></polygon>
+                                </svg>
+                            </button>
+                            <button type="buton" id="down">
+                                <svg viewBox="0 0 100 100">
+                                    <polygon points="0,0 50,100 100,0"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="ul rps-window white">
+                            <div id="container">
+                                <div class="wrapper">
+                                    <div class="disable">rock</div>
+                                    <div class="begin">paper</div>
+                                    <div class="previous">scissors</div>
+                                    <div class="current">rock</div>
+                                    <div class="next">paper</div>
+                                    <div class="end">scissors</div>
+                                    <div class="disable">rock</div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="bar"></div>
                 </div>
-                <div class="rps-window ul white">
-                    <div id="ai-wrap" class="trans-var">
+                <div class="flex">
+                    <div class="rps-window ul white">
+                        <div id="ai-wrap" class="trans-var">
+                        </div>
                     </div>
+                    <div class="ai-bar"></div>
                 </div>
             </div>
             <div id="select">
@@ -64,8 +70,8 @@
     </div>
     </div>
     <!-- <script> -->
-        <!-- document.querySelector("#firefox-is-new-ie").remove(); -->
-        <!-- document.querySelector("#main-screen").classList.replace("hide", "center-flex"); -->
+    <!-- document.querySelector("#firefox-is-new-ie").remove(); -->
+    <!-- document.querySelector("#main-screen").classList.replace("hide", "center-flex"); -->
     <!-- </script> -->
 </body>
 
