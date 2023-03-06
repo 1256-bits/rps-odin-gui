@@ -34,9 +34,9 @@ function result(result, aiResult = "draw") {
 		.classList.replace("neutral", `bg-${result}`);
 	animToggle();
 	setTimeout(() => {
+		animToggle();
 		player.classList.replace(result, "white");
 		ai.classList.replace(aiResult, "white");
-		animToggle();
 		document.querySelector("#main-screen")
 			.classList.replace(`bg-${result}`, "neutral");
 		document.querySelector("#select").firstElementChild
@@ -46,8 +46,13 @@ function result(result, aiResult = "draw") {
 
 function animToggle() {
 	const loser = document.querySelector(".loss");
-	if (loser)
-		loser.classList.toggle("shake");
+	if (!loser)
+		return;
+	loser.classList.toggle("shake");
+	if (loser.hasAttribute("data-player"))
+		document.querySelector("#buttons")
+			.classList.toggle("shake");
+
 }
 
 async function roll() {
