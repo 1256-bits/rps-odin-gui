@@ -33,14 +33,15 @@ function result(result, aiResult = "draw") {
 	document.querySelector("#main-screen")
 		.classList.replace("neutral", `bg-${result}`);
 	animToggle();
-	// const continued =
-	updateBars(result, aiResult);
+	const continued = updateBars(result, aiResult);
 	setTimeout(() => {
 		animToggle();
-		player.classList.replace(result, "white");
-		ai.classList.replace(aiResult, "white");
-		document.querySelector("#main-screen")
-			.classList.replace(`bg-${result}`, "neutral");
+		if (continued) {
+			player.classList.replace(result, "white");
+			ai.classList.replace(aiResult, "white");
+			document.querySelector("#main-screen")
+				.classList.replace(`bg-${result}`, "neutral");
+		}
 		document.querySelector("#select").firstElementChild
 			.addEventListener("click", roll, { once: true });
 	}, 1000);
@@ -73,7 +74,7 @@ function updateBars(player, ai) {
 		if (+getComputedStyle(bar).getPropertyValue("width").replace("px", "") > 12 * fontSize)
 			bar.style.width = "12rem";
 		if (+bar.style.width.replace("rem", "") === 0) {
-			finish(bar.hasAttribute("data-player"));
+			finish(!bar.hasAttribute("data-player"));
 			returnVal = false;
 		}
 	});
@@ -87,8 +88,13 @@ function finish(won) {
 	setTimeout(() => {
 		card.classList.replace("op-0", "op-95");
 		card.classList.remove("move-in");
-		wrapper.style.backgroundColor = "white";
+		card.firstElementChild.textContent += (won) ? "won!" : "lost!";
+		card.lastElementChild.addEventListener("click", reset);
 	}, 0);
+}
+
+function reset() {
+	
 }
 
 async function roll() {
