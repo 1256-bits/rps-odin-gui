@@ -190,7 +190,7 @@
 }
 
 .bg-draw {
-background: linear-gradient(black, white, black);
+    background: linear-gradient(black, white, black);
 }
 
 .abs-bottom-l {
@@ -222,6 +222,60 @@ div:has(>#skip-progress-bar) {
     transition-duration: .3s;
 }
 
+.finish-card {
+    width: 60%;
+    border-radius: 1rem;
+    font-size: 4rem;
+    background-color: darkgray;
+    border: solid 0.5rem grey;
+    text-align: center;
+    margin-inline: auto;
+    padding: 1em 2em;
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    opacity: 95%;
+    transition: all 0.5s ease-out;
+    transform: translateY(-20%);
+}
+
+.finish-card>p {
+    margin-bottom: 1em;
+}
+
+.close-button {
+    font-family: sans-serif;
+    border-radius: 10px;
+    background-color: rgb(116, 116, 116);
+    border: solid 3px black;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+}
+
+.close-button:hover {
+    background-color: rgb(150, 150, 150);
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+.close-button:active {
+    background-color: darkgreen;
+    border-color: rgb(150, 150, 150);
+    color: rgb(150, 150, 150);
+}
+
+#after-reset {
+    background-color: darkgray;
+    transition: all .2s ease-in-out;
+}
+
+#after-reset:active {
+    background-color: darkgreen;
+    border-color: black;
+    color: black;
+}
+
 body {
     margin: 0;
 }
@@ -234,13 +288,15 @@ p {
     animation: shake 0.1s linear 0s 5;
 }
 
-@keyframes shake  {
+@keyframes shake {
     0% {
         transform: translateX(-2px);
     }
+
     50% {
         transform: translateX(2px);
     }
+
     100% {
         transform: translateX(-2px);
     }
