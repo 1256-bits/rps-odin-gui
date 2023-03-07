@@ -12,9 +12,8 @@
 </head>
 
 <body>
-    <div class="vh-100 background center-flex op-100 fade-animation" id="firefox-is-new-ie">
-        <div id="intro">
-        </div>
+    <div class="vh-100 background center-flex op-100 fade-animation">
+        <div id="intro"></div>
         <button type="button" id="close-intro" class="op-0 fade-animation close-button">Close</button>
         <p id="escape-message" class="abs-bottom-l op-0 fade-animation">Hold <span>esc</span> to skip</p>
         <div class="abs-bottom-l">
@@ -56,8 +55,7 @@
                 </div>
                 <div class="flex">
                     <div class="rps-window ul white">
-                        <div id="ai-wrap" class="trans-var">
-                        </div>
+                        <div id="ai-wrap" class="trans-var"></div>
                     </div>
                     <div class="bar"></div>
                 </div>
@@ -68,15 +66,12 @@
             </div>
         </div>
     </div>
+    <div class="vh-100 hide ">
+        <div class="finish-card op-0 move-in">
+            <p>You </p>
+            <button type="button" class="close-button" id="after-reset">Reset</button>
+        </div>
     </div>
-    <div class="finish-card op-0 hide">
-        <p>You won!</p>
-        <button type="button" class="close-button" id="after-reset">Reset</button>
-    </div>
-    <!-- <script> -->
-    <!-- document.querySelector("#firefox-is-new-ie").remove(); -->
-    <!-- document.querySelector("#main-screen").classList.replace("hide", "center-flex"); -->
-    <!-- </script> -->
 </body>
 
 </html>
