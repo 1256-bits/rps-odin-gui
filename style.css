@@ -223,19 +223,31 @@ div:has(>#skip-progress-bar) {
 }
 
 .finish-card {
-    width: 60%;
+    width: 10em;
     border-radius: 1rem;
     font-size: 4rem;
     background-color: darkgray;
     border: solid 0.5rem grey;
     text-align: center;
     margin-inline: auto;
-    padding: 1em 2em;
-    position: absolute;
-    top: 25%;
-    left: 5%;
-    opacity: 95%;
+    padding: 1em 1em;
     transition: all 0.5s ease-out;
+}
+
+div:has(.finish-card) {
+    position: absolute;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: background-color 1s ease-out;
+}
+
+.op-95 {
+    opacity: 95%;
+}
+
+.move-in {
     transform: translateY(-20%);
 }
 
