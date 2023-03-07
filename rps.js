@@ -33,6 +33,7 @@ function result(result, aiResult = "draw") {
 	document.querySelector("#main-screen")
 		.classList.replace("neutral", `bg-${result}`);
 	animToggle();
+	// const continued =
 	updateBars(result, aiResult);
 	setTimeout(() => {
 		animToggle();
@@ -58,7 +59,8 @@ function animToggle() {
 
 function updateBars(player, ai) {
 	if (player === "draw")
-		return;
+		return true;
+	let returnVal = true;
 	const vals = { win: 1.5, loss: -3 };
 	const fontSize = +getComputedStyle(document.querySelector(":root"))
 		.getPropertyValue("font-size").replace("px", "");
@@ -68,10 +70,25 @@ function updateBars(player, ai) {
 		bar.style.width = (bar.hasAttribute("data-player")) ?
 			`${width / fontSize + vals[player]}rem` :
 			`${width / fontSize + vals[ai]}rem`;
-		console.log(+getComputedStyle(bar).getPropertyValue("width").replace("px", ""))
 		if (+getComputedStyle(bar).getPropertyValue("width").replace("px", "") > 12 * fontSize)
 			bar.style.width = "12rem";
+		if (+bar.style.width.replace("rem", "") === 0) {
+			finish(bar.hasAttribute("data-player"));
+			returnVal = false;
+		}
 	});
+	return returnVal;
+}
+
+function finish(won) {
+	const wrapper = document.querySelector("div:has(.finish-card)");
+	const card = document.querySelector(".finish-card");
+	wrapper.classList.replace("hide", "flex");
+	setTimeout(() => {
+		card.classList.replace("op-0", "op-95");
+		card.classList.remove("move-in");
+		wrapper.style.backgroundColor = "white";
+	}, 0);
 }
 
 async function roll() {
