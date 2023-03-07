@@ -62,7 +62,7 @@ function updateBars(player, ai) {
 	if (player === "draw")
 		return true;
 	let returnVal = true;
-	const vals = { win: 1.5, loss: -3 };
+	const vals = { win: 1.5, loss: -6 };
 	const fontSize = +getComputedStyle(document.querySelector(":root"))
 		.getPropertyValue("font-size").replace("px", "");
 	const bars = document.querySelectorAll(".bar");
@@ -73,7 +73,7 @@ function updateBars(player, ai) {
 			`${width / fontSize + vals[ai]}rem`;
 		if (+getComputedStyle(bar).getPropertyValue("width").replace("px", "") > 12 * fontSize)
 			bar.style.width = "12rem";
-		if (+bar.style.width.replace("rem", "") === 0) {
+		if (+bar.style.width.replace("rem", "") <= 0) {
 			finish(!bar.hasAttribute("data-player"));
 			returnVal = false;
 		}
@@ -88,13 +88,50 @@ function finish(won) {
 	setTimeout(() => {
 		card.classList.replace("op-0", "op-95");
 		card.classList.remove("move-in");
-		card.firstElementChild.textContent += (won) ? "won!" : "lost!";
+		card.firstElementChild.textContent = `You ${(won) ? "won!" : "lost!"}`;
 		card.lastElementChild.addEventListener("click", reset);
 	}, 0);
 }
 
-function reset() {
-	
+function reset(e) {
+	const wrapper = document.querySelector("div:has(.finish-card)");
+	const card = document.querySelector(".finish-card");
+	card.classList.replace("op-95", "op-0");
+	wrapper.style.backgroundColor = "rgb(100,100,100)";
+	localStorage.clear();
+	document.querySelector(".wrapper").innerHTML = `
+	<div class="disable">rock</div>
+	<div class="begin">paper</div>
+	<div class="previous">scissors</div>
+	<div class="current">rock</div>
+	<div class="next">paper</div>
+	<div class="end">scissors</div>
+	<div class="disable">rock</div>
+	`
+	const aiWrap = document.querySelector("#ai-wrap");
+	aiWrap.innerHTML = "";
+	addElements(30);
+	aiWrap.children[0].classList.add("previous");
+	aiWrap.children[1].classList.add("current");
+	aiWrap.children[2].classList.add("next");
+	const bars = document.querySelectorAll(".bar");
+	document.querySelectorAll(".rps-window").forEach(window => {
+		window.classList.remove("win", "loss");
+		window.classList.add("white");
+	});
+	const main = document.querySelector("#main-screen");
+	main.classList.remove("bg-win", "bg-loss");
+	main.classList.add("neutral");
+	bars.forEach(bar => bar.style.width = "");
+	document.querySelector("#select").firstElementChild
+		.addEventListener("click", roll, { once: true });
+	setTimeout(() => {
+		wrapper.classList.replace("flex", "op-0");
+		wrapper.addEventListener("transitionend", () => {
+			wrapper.classList.replace("op-0", "hide");
+		});
+	}, 500);
+
 }
 
 async function roll() {
