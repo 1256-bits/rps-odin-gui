@@ -231,7 +231,7 @@ div:has(>#skip-progress-bar) {
     text-align: center;
     margin-inline: auto;
     padding: 1em 1em;
-    transition: all 0.5s ease-out;
+    transition: all 0.7s ease-out;
 }
 
 div:has(.finish-card) {
