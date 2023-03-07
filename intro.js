@@ -8,6 +8,12 @@ document.addEventListener("keydown", handleKeypress);
 document.addEventListener("keyup", introKeyUp);
 
 function rollIntro(lineNum) {
+    if (localStorage.getItem("introDone")) {
+        document.querySelector("body").firstElementChild
+            .classList.remove("fade-animation");
+        closeIntro();
+        return;
+    }
     let isLastLine = false;
     const lines = ["A.D. 2101", "War was beginning", "To keep all your base belong to you",
         "You must win the game of rock, paper, scissors", "For great justice!"];
@@ -77,10 +83,12 @@ function drawCloseButton() {
 }
 
 function mainScreenTurnOn(e) {
-    e.target.style.cssText = `
+    if (e) {
+        e.target.style.cssText = `
         position: absolute;
         width: 100%;
     `
+    }
     const mainScreen = document.querySelector("#main-screen");
     mainScreen.classList.replace("hide", "center-flex");
     document.addEventListener("keydown", scrollKeyDown);
@@ -122,17 +130,26 @@ function closeIntro() {
     container.classList.replace("op-100", "op-0");
     if (currentTimeout)
         clearTimeout(currentTimeout);
-    container.addEventListener("transitionstart", mainScreenTurnOn);
-    container.addEventListener("transitionend", (e) => {
-        e.target.remove()
-        const aiWrapContainer = document.querySelector(".rps-window:has(#ai-wrap)");
-        const aiWrap = document.querySelector("#ai-wrap");
-        aiWrap.style.position = "absolute";
-        aiWrapContainer.style.position = "relative";
-
-    });
+    if (localStorage.introDone) {
+        mainScreenTurnOn();
+        removeIntro({ target: container });
+    }
+    else {
+        container.addEventListener("transitionstart", mainScreenTurnOn);
+        container.addEventListener("transitionend", removeIntro);
+        localStorage.introDone = true;
+    }
     document.removeEventListener("keydown", handleKeypress);
     document.removeEventListener("keyup", introKeyUp);
+}
+
+function removeIntro(e) {
+    e.target.remove()
+    const aiWrapContainer = document.querySelector(".rps-window:has(#ai-wrap)");
+    const aiWrap = document.querySelector("#ai-wrap");
+    aiWrap.style.position = "absolute";
+    aiWrapContainer.style.position = "relative";
+
 }
 
 function introKeyUp(e) {
