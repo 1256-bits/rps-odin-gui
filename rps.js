@@ -166,15 +166,21 @@ function reset() {
 
 	card.classList.replace("op-95", "op-0");
 	cardWrapper.style.backgroundColor = "rgb(100,100,100)";
+	cardWrapper.addEventListener("transitionend", hideCard);
 	setTimeout(() => {
 		resetWindowsContent();
 		resetMainScreenColors();
 		resetBars();
-		cardWrapper.addEventListener("transitionend", hideCard);
 	}, 1000);
 
 	document.querySelector("#select").firstElementChild
 		.addEventListener("click", roll, { once: true });
+}
+
+function buttonReset() {
+	const cardWrapper = document.querySelector("div:has(.finish-card)");
+	cardWrapper.classList.replace("hide", "flex");
+	setTimeout(reset, 0);
 }
 
 async function roll() {
