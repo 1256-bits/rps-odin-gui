@@ -1,10 +1,3 @@
-const debug = () => {
-	debug.loss = -6;
-	// document.querySelectorAll(".bar").forEach(bar => bar.style.width = "3em");
-}
-
-debug();
-
 function rps(player, ai) {
 	delPrevious();
 	if (player === ai) {
@@ -64,7 +57,7 @@ function animToggle() {
 }
 
 const getNewWidth = (width, state, fontSize) => {
-	const vals = { win: 1.5, loss: debug.loss };
+	const vals = { win: 1.5, loss: -3 };
 	const retVal = width / fontSize + vals[state];
 	return `${(retVal > 0) ? retVal : 0}rem`;
 }
@@ -91,7 +84,7 @@ function updateBars(player, ai) {
 			returnVal = false;
 		}
 
-		const who = (isPlayer) ?  "player" : "ai";
+		const who = (isPlayer) ? "player" : "ai";
 		sessionStorage.setItem(who, bar.style.width);
 	});
 	return returnVal;
