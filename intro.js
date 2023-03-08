@@ -98,12 +98,30 @@ function mainScreenTurnOn(e) {
     up.addEventListener("click", scrollClick);
     down.addEventListener("click", scrollClick);
     const aiWrap = document.querySelector("#ai-wrap");
-    addElements(30);
-    aiWrap.children[0].classList.add("previous");
-    aiWrap.children[1].classList.add("current");
-    aiWrap.children[2].classList.add("next");
+    if (sessionStorage.getItem("aiWindow"))
+        aiWrap.innerHTML = sessionStorage.getItem("aiWindow");
+    else {
+        addElements(30);
+        aiWrap.children[0].classList.add("previous");
+        aiWrap.children[1].classList.add("current");
+        aiWrap.children[2].classList.add("next");
+    }
+
+    if (sessionStorage.getItem("plWindow"))
+        document.querySelector(".wrapper").innerHTML = sessionStorage.getItem("plWindow");
+
+    if (sessionStorage.getItem("ai")) {
+        const [plBar, aiBar] = [...document.querySelectorAll(".bar")];
+        plBar.style.width = sessionStorage.getItem("player");
+        aiBar.style.width = sessionStorage.getItem("ai");
+    }
+
     document.querySelector("#select").firstElementChild
         .addEventListener("click", roll, { once: true });
+}
+
+function restoreStorage() {
+
 }
 
 function handleKeypress(e) {
