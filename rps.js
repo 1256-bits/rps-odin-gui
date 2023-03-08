@@ -141,25 +141,32 @@ function resetBars() {
 	bars.forEach(bar => bar.style.width = "");
 }
 
+function hideCard(e) {
+	if (e.propertyName !== "background-color")
+		return;
+	const cardWrapper = e.target;
+	cardWrapper.removeEventListener("transitionend", hideCard);
+	cardWrapper.classList.replace("op-100", "op-0");
+	cardWrapper.addEventListener("transitionend", () => {
+		cardWrapper.classList.replace("flex", "hide")
+		cardWrapper.style.backgroundColor = "";
+		cardWrapper.classList.replace("op-0", "op-100");
+	}, { once: true });
+}
+
 function reset(e) {
 	const cardWrapper = document.querySelector("div:has(.finish-card)");
 	const card = document.querySelector(".finish-card");
 
 	localStorage.clear();
-	resetWindowsContent();
-	resetMainScreenColors();
-	resetBars();
 
 	card.classList.replace("op-95", "op-0");
 	cardWrapper.style.backgroundColor = "rgb(100,100,100)";
 	setTimeout(() => {
-		cardWrapper.addEventListener("transitionend", (e) => {
-			if (e.propertyName !== "background-color")
-				return;
-			console.log(e)
-			cardWrapper.classList.replace("op-100", "op-0");
-			// cardWrapper.classList.replace("op-0", "hide");
-		});
+		resetWindowsContent();
+		resetMainScreenColors();
+		resetBars();
+		cardWrapper.addEventListener("transitionend", hideCard);
 	}, 1000);
 
 	document.querySelector("#select").firstElementChild
