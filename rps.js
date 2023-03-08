@@ -168,6 +168,7 @@ function reset() {
 		resetWindowsContent();
 		resetMainScreenColors();
 		resetBars();
+		card.classList.add("move-in");
 	}, 1000);
 
 	document.querySelector("#select").firstElementChild
