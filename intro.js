@@ -8,7 +8,7 @@ document.addEventListener("keydown", handleKeypress);
 document.addEventListener("keyup", introKeyUp);
 
 function rollIntro(lineNum) {
-    if (localStorage.getItem("introDone")) {
+    if (sessionStorage.getItem("introDone")) {
         document.querySelector("body").firstElementChild
             .classList.remove("fade-animation");
         closeIntro();
@@ -130,14 +130,14 @@ function closeIntro() {
     container.classList.replace("op-100", "op-0");
     if (currentTimeout)
         clearTimeout(currentTimeout);
-    if (localStorage.introDone) {
+    if (sessionStorage.introDone) {
         mainScreenTurnOn();
         removeIntro({ target: container });
     }
     else {
         container.addEventListener("transitionstart", mainScreenTurnOn);
         container.addEventListener("transitionend", removeIntro);
-        localStorage.introDone = true;
+        sessionStorage.setItem("introDone", "true");
     }
     document.removeEventListener("keydown", handleKeypress);
     document.removeEventListener("keyup", introKeyUp);

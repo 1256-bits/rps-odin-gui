@@ -1,4 +1,9 @@
-let started = false;
+const debug = () => {
+	debug.loss = -6;
+	document.querySelectorAll(".bar").forEach(bar => bar.style.width = "3em");
+}
+
+debug();
 
 function rps(player, ai) {
 	delPrevious();
@@ -59,7 +64,7 @@ function animToggle() {
 }
 
 const getNewWidth = (width, state, fontSize) => {
-	const vals = { win: 1.5, loss: -6 };
+	const vals = { win: 1.5, loss: debug.loss };
 	const retVal = width / fontSize + vals[state];
 	return `${(retVal > 0) ? retVal : 0}rem`;
 }
@@ -157,7 +162,7 @@ function reset() {
 	const cardWrapper = document.querySelector("div:has(.finish-card)");
 	const card = document.querySelector(".finish-card");
 
-	localStorage.clear();
+	sessionStorage.clear();
 
 	card.classList.replace("op-95", "op-0");
 	cardWrapper.style.backgroundColor = "rgb(100,100,100)";
