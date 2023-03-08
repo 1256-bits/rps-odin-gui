@@ -75,7 +75,6 @@ function aiScroll(count) {
         const current = next.previousSibling;
         if (aiScroll.count <= 0) {
             clearInterval(aiScroll.interval);
-            sessionStorage.setItem("aiWindow", aiWrap.innerHTML);
             return;
         }
         const y = +getComputedStyle(aiScroll.root).getPropertyValue("--ai-y").replace("em", "");
@@ -106,4 +105,5 @@ function delPrevious() {
     if (aiWrap.children.length < 11) {
         addElements(8);
     }
+    sessionStorage.setItem("aiWindow", aiWrap.innerHTML);
 }
