@@ -79,7 +79,6 @@ function updateBars(player, ai) {
 
 		if (+getComputedStyle(bar).getPropertyValue("width").replace("px", "") > 12 * fontSize)
 			bar.style.width = "12rem";
-		console.log(bar.hasAttribute("data-player"), bar.style.width)
 
 		if (+bar.style.width.replace("rem", "") <= 0) {
 			finish(!bar.hasAttribute("data-player"));
@@ -154,7 +153,7 @@ function hideCard(e) {
 	}, { once: true });
 }
 
-function reset(e) {
+function reset() {
 	const cardWrapper = document.querySelector("div:has(.finish-card)");
 	const card = document.querySelector(".finish-card");
 
