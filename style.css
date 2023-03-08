@@ -240,7 +240,7 @@ div:has(.finish-card) {
     align-items: center;
     justify-content: center;
     width: 100%;
-    transition: background-color 1s ease-out;
+    transition: all 1s ease-out;
 }
 
 .op-95 {

@@ -102,18 +102,11 @@ function finish(won) {
 	}, 0);
 }
 
-function reset(e) {
-	const wrapper = document.querySelector("div:has(.finish-card)");
-	const card = document.querySelector(".finish-card");
+function resetWindowsContent() {
 	const aiWrap = document.querySelector("#ai-wrap");
-	const bars = document.querySelectorAll(".bar");
-	const main = document.querySelector("#main-screen");
-	const rpsWindows = document.querySelectorAll(".rps-window");
+	const wrapper = document.querySelector(".wrapper");
 
-	localStorage.clear();
-	card.classList.replace("op-95", "op-0");
-	wrapper.style.backgroundColor = "rgb(100,100,100)";
-	document.querySelector(".wrapper").innerHTML = `
+	wrapper.innerHTML = `
 		<div class="disable">rock</div>
 		<div class="begin">paper</div>
 		<div class="previous">scissors</div>
@@ -127,19 +120,47 @@ function reset(e) {
 	aiWrap.children[0].classList.add("previous");
 	aiWrap.children[1].classList.add("current");
 	aiWrap.children[2].classList.add("next");
-	bars.forEach(bar => bar.style.width = "");
+
+}
+
+function resetMainScreenColors() {
+	const rpsWindows = document.querySelectorAll(".rps-window");
+	const mainScreen = document.querySelector("#main-screen");
+
+	mainScreen.classList.remove("bg-win", "bg-loss");
+	mainScreen.classList.add("neutral");
+
 	rpsWindows.forEach(window => {
 		window.classList.remove("win", "loss");
 		window.classList.add("white");
 	});
-	main.classList.remove("bg-win", "bg-loss");
-	main.classList.add("neutral");
-	// setTimeout(() => {
-	wrapper.classList.replace("flex", "op-0");
-	wrapper.addEventListener("transitionend", () => {
-		wrapper.classList.replace("op-0", "hide");
-	});
-	// }, 100);
+}
+
+function resetBars() {
+	const bars = document.querySelectorAll(".bar");
+	bars.forEach(bar => bar.style.width = "");
+}
+
+function reset(e) {
+	const cardWrapper = document.querySelector("div:has(.finish-card)");
+	const card = document.querySelector(".finish-card");
+
+	localStorage.clear();
+	resetWindowsContent();
+	resetMainScreenColors();
+	resetBars();
+
+	card.classList.replace("op-95", "op-0");
+	cardWrapper.style.backgroundColor = "rgb(100,100,100)";
+	setTimeout(() => {
+		cardWrapper.addEventListener("transitionend", (e) => {
+			if (e.propertyName !== "background-color")
+				return;
+			console.log(e)
+			cardWrapper.classList.replace("op-100", "op-0");
+			// cardWrapper.classList.replace("op-0", "hide");
+		});
+	}, 1000);
 
 	document.querySelector("#select").firstElementChild
 		.addEventListener("click", roll, { once: true });
