@@ -1,6 +1,6 @@
 const debug = () => {
 	debug.loss = -6;
-	document.querySelectorAll(".bar").forEach(bar => bar.style.width = "3em");
+	// document.querySelectorAll(".bar").forEach(bar => bar.style.width = "3em");
 }
 
 debug();
@@ -78,17 +78,21 @@ function updateBars(player, ai) {
 		.getPropertyValue("font-size").replace("px", "");
 
 	bars.forEach(bar => {
+		const isPlayer = bar.hasAttribute("data-player");
 		const width = +getComputedStyle(bar).getPropertyValue("width").replace("px", "");
-		bar.style.width = (bar.hasAttribute("data-player")) ?
+		bar.style.width = (isPlayer) ?
 			getNewWidth(width, player, fontSize) : getNewWidth(width, ai, fontSize);
 
 		if (+getComputedStyle(bar).getPropertyValue("width").replace("px", "") > 12 * fontSize)
 			bar.style.width = "12rem";
 
 		if (+bar.style.width.replace("rem", "") <= 0) {
-			finish(!bar.hasAttribute("data-player"));
+			finish(!isPlayer);
 			returnVal = false;
 		}
+
+		const who = (isPlayer) ?  "player" : "ai";
+		sessionStorage.setItem(who, bar.style.width);
 	});
 	return returnVal;
 }

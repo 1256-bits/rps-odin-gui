@@ -45,6 +45,7 @@ function scroll(direction) {
         wrapper.append(newHidden);
     }
 
+    sessionStorage.setItem("plWindow", wrapper.innerHTML);
     rateLimit = true;
     setTimeout(() => rateLimit = false, 150);
 }
@@ -67,12 +68,14 @@ function scrollClick() {
 function aiScroll(count) {
     aiScroll.root = document.querySelector(":root");
     aiScroll.count = count;
-    document.querySelector("#ai-wrap").addEventListener("transitionend", resolveScroll);
+    const aiWrap = document.querySelector("#ai-wrap");
+    aiWrap.addEventListener("transitionend", resolveScroll);
     aiScroll.interval = setInterval(() => {
         const next = document.querySelector("#ai-wrap > .next");
         const current = next.previousSibling;
         if (aiScroll.count <= 0) {
             clearInterval(aiScroll.interval);
+            sessionStorage.setItem("aiWindow", aiWrap.innerHTML);
             return;
         }
         const y = +getComputedStyle(aiScroll.root).getPropertyValue("--ai-y").replace("em", "");
