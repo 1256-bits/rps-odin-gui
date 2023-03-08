@@ -1,4 +1,5 @@
 let rateLimit = false;
+let scrollInterval;
 
 function scroll(direction) {
     if (rateLimit)
@@ -63,12 +64,43 @@ function scrollClick() {
     scroll(this.id);
 }
 
-function aiScroll() {
-    const aiWrap = document.querySelector("#aiWrap");
-    setInterval(() => {
-        const root = document.querySelector(":root");
-        const y = +getComputedStyle(root).getPropertyValue("--ai-y").replace("em", "");
-        console.log(y)
-        root.style.setProperty("--ai-y", y - 2 + "em");
+function aiScroll(count) {
+    aiScroll.root = document.querySelector(":root");
+    aiScroll.count = count;
+    document.querySelector("#ai-wrap").addEventListener("transitionend", resolveScroll);
+    aiScroll.interval = setInterval(() => {
+        const next = document.querySelector("#ai-wrap > .next");
+        const current = next.previousSibling;
+        if (aiScroll.count <= 0) {
+            clearInterval(aiScroll.interval);
+            return;
+        }
+        const y = +getComputedStyle(aiScroll.root).getPropertyValue("--ai-y").replace("em", "");
+        aiScroll.root.style.setProperty("--ai-y", y - 1 + "em");
+        current.classList.replace("current", "previous");
+        next.classList.replace("next", "current");
+        next.nextSibling.classList.add("next");
+        aiScroll.count--;
     }, 200);
+}
+
+function resolveScroll(e) {
+    if (e.propertyName !== "transform" || aiScroll.count !== 0) {
+        return;
+    }
+    document.querySelector("#ai-wrap").removeEventListener("transitionend", resolveScroll);
+    document.dispatchEvent(new Event("scrollend"));
+}
+
+function delPrevious() {
+    const aiWrap = document.querySelector("#ai-wrap");
+    Array.from(aiWrap.querySelectorAll(".previous"))
+        .slice(0, -1).forEach(pr => pr.remove());
+    aiWrap.classList.toggle("trans-var");
+    const root = document.querySelector(":root");
+    root.style.setProperty("--ai-y", "-0.2em");
+    setTimeout(() => aiWrap.classList.toggle("trans-var"), 100);
+    if (aiWrap.children.length < 11) {
+        addElements(8);
+    }
 }

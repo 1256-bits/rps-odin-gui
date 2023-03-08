@@ -4,56 +4,60 @@
 <head>
     <title>Rock, Paper, Scissors</title>
     <meta charset="utf-8">
+    <script src="scroll.js" defer></script>
     <script src="rps.js" defer></script>
     <script src="intro.js" defer></script>
-    <script src="scroll.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scroll.css">
 </head>
 
 <body>
-    <div class="vh-100 background center-flex op-100 fade-animation" id="firefox-is-new-ie">
-        <div id="intro">
-        </div>
-        <button type="button" id="close-intro" class="op-0 fade-animation">Close</button>
+    <div class="vh-100 background center-flex op-100 fade-animation">
+        <div id="intro"></div>
+        <button type="button" id="close-intro" class="op-0 fade-animation close-button">Close</button>
         <p id="escape-message" class="abs-bottom-l op-0 fade-animation">Hold <span>esc</span> to skip</p>
         <div class="abs-bottom-l">
             <div class="op-0 fade-animation" id="skip-progress-bar"></div>
         </div>
     </div>
-    <div class="vh-100 hide center-flex" id="main-screen">
+    <div class="vh-100 hide center-flex neutral" id="main-screen">
         <div id="game" class="center-flex">
             <div id="windows">
-                <div style="display: flex; flex-direction: row-reverse; gap: 1px;">
-                    <div id="buttons">
-                        <button type="button" id="up">
-                            <svg viewBox="0 0 100 100">
-                                <polygon points="0,100 50,0 100,100"></polygon>
-                            </svg>
-                        </button>
-                        <button type="buton" id="down">
-                            <svg viewBox="0 0 100 100">
-                                <polygon points="0,0 50,100 100,0"></polygon>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="ul rps-window">
-                        <div id="container">
-                            <div class="wrapper">
-                                <div class="disable">rock</div>
-                                <div class="begin">paper</div>
-                                <div class="previous">scissors</div>
-                                <div class="current">rock</div>
-                                <div class="next">paper</div>
-                                <div class="end">scissors</div>
-                                <div class="disable">rock</div>
+                <div class="flex">
+                    <div style="display: flex; flex-direction: row; gap: 1px;">
+                        <div class="ul rps-window white" data-player="true">
+                            <div id="container">
+                                <div class="wrapper">
+                                    <div class="disable">rock</div>
+                                    <div class="begin">paper</div>
+                                    <div class="previous">scissors</div>
+                                    <div class="current">rock</div>
+                                    <div class="next">paper</div>
+                                    <div class="end">scissors</div>
+                                    <div class="disable">rock</div>
+                                </div>
                             </div>
                         </div>
+                        <div id="buttons">
+                            <button type="button" id="up">
+                                <svg viewBox="0 0 100 100">
+                                    <polygon points="0,100 50,0 100,100"></polygon>
+                                </svg>
+                            </button>
+                            <button type="buton" id="down">
+                                <svg viewBox="0 0 100 100">
+                                    <polygon points="0,0 50,100 100,0"></polygon>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
+                    <div class="bar" data-player="true"></div>
                 </div>
-                <div class="rps-window ul">
-                    <div id="ai-wrap">
+                <div class="flex">
+                    <div class="rps-window ul white">
+                        <div id="ai-wrap" class="trans-var"></div>
                     </div>
+                    <div class="bar"></div>
                 </div>
             </div>
             <div id="select">
@@ -62,11 +66,12 @@
             </div>
         </div>
     </div>
+    <div class="vh-100 hide op-100">
+        <div class="finish-card op-0 move-in">
+            <p>You </p>
+            <button type="button" class="close-button" id="after-reset">Reset</button>
+        </div>
     </div>
-    <!-- <script> -->
-        <!-- document.querySelector("#firefox-is-new-ie").remove(); -->
-        <!-- document.querySelector("#main-screen").classList.replace("hide", "center-flex"); -->
-    <!-- </script> -->
 </body>
 
 </html>

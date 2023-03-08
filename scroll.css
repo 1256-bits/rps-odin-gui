@@ -3,13 +3,18 @@
     overflow: hidden;
 }
 
-.wrapper>div {
+.wrapper>div,
+#ai-wrap>p {
     width: 100%;
     text-align: center;
     height: 1.5em;
     margin-top: -0.5em;
+}
+
+.wrapper>div {
     transition: all .3s linear;
 }
+
 
 #container {
     transition: all .3s linear;
@@ -34,11 +39,18 @@
     --y: 0em;
     --wrapper-y: -1.2em;
     --progress: 100%;
-    --ai-y: 0em;
+    --ai-y: -0.2em;
+    --transition-speed: .2s;
 }
 
 #ai-wrap {
+    /* position: absolute; */
     transform: translateY(var(--ai-y));
+    left: 35%;
+}
+
+.trans-var {
+    transition: all var(--transition-speed) linear;
 }
 
 svg {

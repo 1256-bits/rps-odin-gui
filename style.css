@@ -66,8 +66,23 @@
     opacity: 100%;
 }
 
-.background {
+.background,
+.loss {
     background-color: rgb(122, 24, 24);
+}
+
+.loss {
+    box-shadow: 0px 0px 1em 0.3em rgb(122, 24, 24);
+}
+
+.win {
+    background-color: rgb(19, 132, 19);
+    box-shadow: 0px 0px 1em 0.3em rgb(19, 132, 19);
+}
+
+.draw {
+    background-color: white;
+    box-shadow: 0px 0px 1em 0.3em white;
 }
 
 .hide {
@@ -96,11 +111,30 @@
     width: 100%;
 }
 
+.bar {
+    width: 12rem;
+    height: 0.2em;
+    border-radius: 1em;
+    margin-inline: 0.6em;
+    background-color: rgb(0, 0, 0);
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
 .rps-window {
     border: 2px solid black;
     height: 2em;
+    width: 3em;
     padding-inline: 5em;
     border-radius: 1em;
+    transition: background-color 0.3s, box-shadow 0.3s linear;
+}
+
+.white {
     background-color: white;
 }
 
@@ -140,7 +174,23 @@
 }
 
 #main-screen {
+    transition: background-color .3s linear;
+}
+
+.neutral {
     background: linear-gradient(black, rgb(31, 31, 58), black);
+}
+
+.bg-win {
+    background: linear-gradient(black, rgb(31, 160, 31), black);
+}
+
+.bg-loss {
+    background: linear-gradient(black, rgb(207, 31, 31), black);
+}
+
+.bg-draw {
+    background: linear-gradient(black, white, black);
 }
 
 .abs-bottom-l {
@@ -172,10 +222,94 @@ div:has(>#skip-progress-bar) {
     transition-duration: .3s;
 }
 
+.finish-card {
+    width: 10em;
+    border-radius: 1rem;
+    font-size: 4rem;
+    background-color: darkgray;
+    border: solid 0.5rem grey;
+    text-align: center;
+    margin-inline: auto;
+    padding: 1em 1em;
+    transition: all 0.7s ease-out;
+}
+
+div:has(.finish-card) {
+    position: absolute;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: all 1s ease-out;
+}
+
+.op-95 {
+    opacity: 95%;
+}
+
+.move-in {
+    transform: translateY(-20%);
+}
+
+.finish-card>p {
+    margin-bottom: 1em;
+}
+
+.close-button {
+    font-family: sans-serif;
+    border-radius: 10px;
+    background-color: rgb(116, 116, 116);
+    border: solid 3px black;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+}
+
+.close-button:hover {
+    background-color: rgb(150, 150, 150);
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+.close-button:active {
+    background-color: darkgreen;
+    border-color: rgb(150, 150, 150);
+    color: rgb(150, 150, 150);
+}
+
+#after-reset {
+    background-color: darkgray;
+    transition: all .2s ease-in-out;
+}
+
+#after-reset:active {
+    background-color: darkgreen;
+    border-color: black;
+    color: black;
+}
+
 body {
     margin: 0;
 }
 
 p {
     margin: 0;
+}
+
+.shake {
+    animation: shake 0.1s linear 0s 5;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(-2px);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+
+    100% {
+        transform: translateX(-2px);
+    }
 }
